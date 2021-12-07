@@ -3,20 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GridComponent } from './components/grid/grid.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { GridModule } from "@progress/kendo-angular-grid";
+import { HttpClientModule }   from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GridComponent
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    GridModule
+    GridModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
