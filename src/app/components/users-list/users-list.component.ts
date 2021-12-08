@@ -18,4 +18,8 @@ export class UsersListComponent implements OnInit {
       this.users = users;
     })
   }
+
+  public addUser(): void {
+    
+  }
 }
