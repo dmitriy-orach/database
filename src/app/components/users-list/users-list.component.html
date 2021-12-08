@@ -1,7 +1,5 @@
 <div class="users-list">
-    <div class="users-list-btn-block">
-        <button kendoButton [primary]="true" click="addUser()">Add new</button>
-    </div>
+    <app-modal-new-user></app-modal-new-user>
 
     <kendo-grid [data]="users">
         <kendo-grid-column field="username" title="User name"> </kendo-grid-column>

@@ -10,6 +10,7 @@ import { PostService } from '../../services/users/users.service'
 })
 export class UsersListComponent implements OnInit {
   public users: User[] = [];
+  public isShowModal: boolean = false;
 
   constructor(private postService: PostService) { }
 
@@ -19,7 +20,7 @@ export class UsersListComponent implements OnInit {
     })
   }
 
-  public addUser(): void {
-    
+  public addNewUser(): void {
+    this.isShowModal = true;
   }
 }

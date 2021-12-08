@@ -9,13 +9,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { GridModule } from "@progress/kendo-angular-grid";
 import { HttpClientModule }   from '@angular/common/http';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { ModalNewUserComponent } from './components/modal-new-user/modal-new-user.component';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ModalNewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     GridModule,
     HttpClientModule,
     ButtonsModule,
+    DialogsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
