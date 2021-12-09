@@ -1,5 +1,5 @@
 <div class="users-list">
-    <app-modal-new-user></app-modal-new-user>
+    <app-modal-new-user [usersLength]="users.length"></app-modal-new-user>
 
     <kendo-grid [data]="users">
         <kendo-grid-column field="username" title="User name"> </kendo-grid-column>

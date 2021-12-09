@@ -1,16 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+import { User } from 'src/app/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostService {
+export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  public getUsers(): Observable<any> {
-    return this.http.get('http://localhost:3000/users');
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:3000/users');
+  }
+
+  public postNewUser(newUser: User): Observable<User> {
+    return this.http.post<User>('http://localhost:3000/users', newUser);
   }
 }

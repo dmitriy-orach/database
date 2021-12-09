@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
-import { PostService } from '../../services/users/users.service'
+import { UsersService } from '../../services/users/users.service'
 
 @Component({
   selector: 'app-users-list',
@@ -12,10 +12,10 @@ export class UsersListComponent implements OnInit {
   public users: User[] = [];
   public isShowModal: boolean = false;
 
-  constructor(private postService: PostService) { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.postService.getUsers().pipe(take(1)).subscribe((users) => {
+    this.usersService.getUsers().pipe(take(1)).subscribe((users) => {
       this.users = users;
     })
   }

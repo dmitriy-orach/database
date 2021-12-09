@@ -11,8 +11,7 @@ import { HttpClientModule }   from '@angular/common/http';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ModalNewUserComponent } from './components/modal-new-user/modal-new-user.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
-
-
+import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +28,8 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
     HttpClientModule,
     ButtonsModule,
     DialogsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
