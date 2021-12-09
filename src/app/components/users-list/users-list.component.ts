@@ -10,17 +10,16 @@ import { UsersService } from '../../services/users/users.service'
 })
 export class UsersListComponent implements OnInit {
   public users: User[] = [];
-  public isShowModal: boolean = false;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getUsers().pipe(take(1)).subscribe((users) => {
-      this.users = users;
-    })
+    this.usersService.getUsers().pipe(take(1)).subscribe((users) => this.users = users);
   }
 
-  public addNewUser(): void {
-    this.isShowModal = true;
+  public updateUsers(event: any): void {
+    if(!!event) {
+      this.usersService.getUsers().pipe(take(1)).subscribe((users) => this.users = users);
+    }
   }
 }

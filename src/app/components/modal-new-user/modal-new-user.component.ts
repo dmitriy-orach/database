@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users/users.service';
@@ -14,6 +14,8 @@ export class ModalNewUserComponent implements OnInit {
   public newUserForm: FormGroup;
 
   @Input() usersLength: number;
+
+  @Output() isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   constructor(private usersService: UsersService) { }
 
@@ -34,15 +36,15 @@ export class ModalNewUserComponent implements OnInit {
     });
   }
 
-  public close() {
+  public close(): void {
     this.opened = false;
   }
 
-  public open() {
+  public open(): void {
     this.opened = true;
   }
 
-  public submit() {
+  public submit(): void {
     const newUser: User = {
       id: this.usersLength + 1,
       firstName: this.newUserForm.value.firstName,
@@ -62,11 +64,15 @@ export class ModalNewUserComponent implements OnInit {
         scope: this.newUserForm.value.companyScope
       }
     };
+
     this.usersService.postNewUser(newUser).subscribe(
-      (data: any) => {console.log(this.dataSaved = true)},
+      (data: any) => {
+        this.dataSaved = true;
+        this.isUpdate.emit(data);
+      },
       (error: any)  => console.log(error)
     );
-    this.dataSaved = true;
+    this.newUserForm.reset();
     this.close();
   }
 }

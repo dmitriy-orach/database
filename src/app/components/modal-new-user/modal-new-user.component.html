@@ -1,7 +1,7 @@
 <div class="example-wrapper">
     <button kendoButton class="k-primary" *ngIf="!opened" (click)="open()">Add User</button>
     <button kendoButton class="k-button" *ngIf="opened" (click)="close()">Cancel</button>
-    <p *ngIf="dataSaved">New user data saved</p>
+    <p *ngIf="dataSaved">New user saved</p>
     <kendo-window title="Please fill in the new user information" *ngIf="opened" (close)="close()" [minWidth]="600"
         [width]="450">
         <form class="k-form" [formGroup]="newUserForm">
