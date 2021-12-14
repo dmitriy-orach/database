@@ -4125,25 +4125,6 @@
         "name": "Romaguera-Crona",
         "scope": "Finance"
       }
-    },
-    {
-      "id": 2,
-      "firstName": "Nastia",
-      "lastName": "Orach",
-      "username": "Shatr",
-      "email": "nastena@gmail.com",
-      "address": {
-        "street": "Feerbaha",
-        "building": "1A",
-        "city": "Kharkiv",
-        "zipcode": "62006"
-      },
-      "phone": "+380984534182",
-      "website": "KFC.ua",
-      "company": {
-        "name": "KFC",
-        "scope": "Fastfood"
-      }
     }
   ],
   "profile": {

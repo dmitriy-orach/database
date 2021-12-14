@@ -1,0 +1,13 @@
+:host {
+    .example-wrapper{
+        margin: 15px 0;
+        
+    }
+
+    &::ng-deep {
+        kendo-window {
+            max-height: 600px;
+            padding-bottom: 20px;
+        }
+    }
+}

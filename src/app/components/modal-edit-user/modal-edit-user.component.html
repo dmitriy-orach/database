@@ -1,0 +1,71 @@
+<div class="example-wrapper">
+    <button kendoButton class="k-primary" *ngIf="!opened" (click)="open()">Edit user</button>
+    <button kendoButton class="k-button" *ngIf="opened" (click)="close()">Cancel</button>
+    <p *ngIf="dataSaved">User edited</p>
+    <kendo-window title="Please edited in the user information" *ngIf="opened" (close)="close()" [minWidth]="600"
+        [width]="450">
+        <form class="k-form" [formGroup]="editUserForm">
+            <fieldset>
+                <legend>User Details</legend>
+
+                <label class="k-form-field">
+                    <span>First name</span>
+                    <input class="k-textbox" placeholder="First name" formControlName="firstName" />
+                </label>
+                <label class="k-form-field">
+                    <span>Last name</span>
+                    <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
+                </label>
+                <label class="k-form-field">
+                    <span>Nickname</span>
+                    <input class="k-textbox" placeholder="Nickname" formControlName="nickName" />
+                </label>
+                <label class="k-form-field">
+                    <span>Email</span>
+                    <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
+                </label>
+                <label class="k-form-field">
+                    <span>Phone</span>
+                    <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
+                </label>
+                <label class="k-form-field">
+                    <span>City</span>
+                    <input class="k-textbox" placeholder="City" formControlName="city" />
+                </label>
+                <label class="k-form-field">
+                    <span>Street</span>
+                    <input class="k-textbox" placeholder="Street" formControlName="street" />
+                </label>
+                <label class="k-form-field">
+                    <span>Building</span>
+                    <input class="k-textbox" placeholder="Building" formControlName="building" />
+                </label>
+                <label class="k-form-field">
+                    <span>Zipcode</span>
+                    <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
+                </label>
+                <label class="k-form-field">
+                    <span>Website</span>
+                    <input class="k-textbox" placeholder="Website" formControlName="website" />
+                </label>
+                <label class="k-form-field">
+                    <span>Company name</span>
+                    <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
+                </label>
+                <label class="k-form-field">
+                    <span>Company scope</span>
+                    <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
+                </label>
+            </fieldset>
+
+            <div class="k-actions k-actions-end">
+                <button type="button" class="k-button" (click)="close()">
+                    Cancel
+                </button>
+                <button type="button" class="k-button k-primary" (click)="submit()" [disabled]="editUserForm.invalid">
+                    Save
+                </button>
+            </div>
+        </form>
+    </kendo-window>
+</div>

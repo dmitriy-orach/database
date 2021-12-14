@@ -20,6 +20,10 @@ export class UsersService {
   }
 
   public getUser(id: string): Observable<User> {
-    return this.http.get<User>(url + '/' + id.toString());
+    return this.http.get<User>(url + '/' + id);
+  }
+
+  public editUser(id: string, editUser: User): Observable<User> {
+    return this.http.put<User>(url + '/' + id, editUser);
   }
 }

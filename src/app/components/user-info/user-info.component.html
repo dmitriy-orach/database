@@ -1,4 +1,7 @@
 <div class="container" *ngIf="user$ | async as user">
+
+    <app-modal-edit-user [user]="user" (isEdited)="updateUser($event)"></app-modal-edit-user>
+
     <h1>User info</h1>
     <div class="info-item">
         <span>User first name</span>

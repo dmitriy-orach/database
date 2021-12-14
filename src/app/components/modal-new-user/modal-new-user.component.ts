@@ -15,7 +15,7 @@ export class ModalNewUserComponent implements OnInit {
 
   @Input() usersLength: number;
 
-  @Output() isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>()
+  @Output() isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private usersService: UsersService) { }
 
