@@ -12,13 +12,17 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { ModalNewUserComponent } from './components/modal-new-user/modal-new-user.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { ListViewModule } from '@progress/kendo-angular-listview';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
     NotFoundComponent,
-    ModalNewUserComponent
+    ModalNewUserComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,8 @@ import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
     ButtonsModule,
     DialogsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,12 @@
     <app-modal-new-user [usersLength]="users.length" (isUpdate)="updateUsers($event)"></app-modal-new-user>
 
     <kendo-grid [data]="users">
+        <kendo-grid-column class="btn">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <button kendoButton class="k-primary" (dblclick)="dblClick(dataItem)">user info</button>
+            </ng-template>
+        </kendo-grid-column>
+
         <kendo-grid-column field="username" title="User name"> </kendo-grid-column>
         <kendo-grid-column field="email" title="Post email"> </kendo-grid-column>
         <kendo-grid-column field="address.city" title="User address"> </kendo-grid-column>

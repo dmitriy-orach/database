@@ -1,0 +1,39 @@
+<div class="container" *ngIf="user$ | async as user">
+    <h1>User info</h1>
+    <div class="info-item">
+        <span>User first name</span>
+        <p>{{user.firstName}}</p>
+    </div>
+    <div class="info-item">
+        <span>User last name</span>
+        <p>{{user.lastName}}</p>
+    </div>
+    <div class="info-item">
+        <span>User nickname</span>
+        <p>{{user.username}}</p>
+    </div>
+    <div class="info-item">
+        <span>User email</span>
+        <p>{{user.email}}</p>
+    </div>
+    <div class="info-item">
+        <span>User address</span>
+        <p>Street: {{user.address.street}}</p>
+        <p>Building: {{user.address.building}}</p>
+        <p>City: {{user.address.city}}</p>
+        <p>Zipcode: {{user.address.zipcode}}</p>
+    </div>
+    <div class="info-item">
+        <span>User phone:</span>
+        <p>{{user.phone}}</p>
+    </div>
+    <div class="info-item">
+        <span>User website</span>
+        <p>{{user.website}}</p>
+    </div>
+    <div class="info-item">
+        <span>User company</span>
+        <p>Company name: {{user.company.name}}</p>
+        <p>Company scope: {{user.company.scope}}</p>
+    </div>
+</div>
