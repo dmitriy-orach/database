@@ -1,4 +1,4 @@
-<div class="users-list">
+<div class="users-list" *ngIf="users$ | async as users">
     <app-modal-new-user [usersLength]="users.length" (isUpdate)="updateUsers($event)"></app-modal-new-user>
 
     <kendo-grid [data]="users">

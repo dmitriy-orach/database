@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from '../../services/users/users.service'
 
@@ -10,7 +10,7 @@ import { UsersService } from '../../services/users/users.service'
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  public users: User[] = [];
+  public users$: Observable<User[]> | undefined;
 
   constructor(
     private usersService: UsersService,
@@ -18,12 +18,12 @@ export class UsersListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usersService.getUsers().pipe(take(1)).subscribe((users) => this.users = users);
+    this.users$ = this.usersService.getUsers();
   }
 
   public updateUsers(event: any): void {
     if(!!event) {
-      this.usersService.getUsers().pipe(take(1)).subscribe((users) => this.users = users);
+      this.users$ = this.usersService.getUsers();
     }
   }
 
