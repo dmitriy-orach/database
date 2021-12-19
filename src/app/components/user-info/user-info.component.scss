@@ -1,17 +1,24 @@
-.info-item {
-    padding: 0 5px;
+.user-info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
 
-    &:not(:last-child) {
-        margin-bottom: 15px;
-    }
-
-    span {
-        font-weight: 600;
-        font-size: 16px;
-    }
-
-    p {
-        font-weight: 300;
-        font-size: 14px;
+    &-item {
+        padding: 0 5px;
+    
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    
+        span {
+            font-weight: 600;
+            font-size: 16px;
+        }
+    
+        p {
+            font-weight: 300;
+            font-size: 14px;
+        }
     }
 }

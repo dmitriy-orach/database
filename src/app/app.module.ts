@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { ModalEditUserComponent } from './components/modal-edit-user/modal-edit-user.component';
+import { PostComponent } from './components/post/post.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ModalEditUserComponent } from './components/modal-edit-user/modal-edit-
     NotFoundComponent,
     ModalNewUserComponent,
     UserInfoComponent,
-    ModalEditUserComponent
+    ModalEditUserComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
