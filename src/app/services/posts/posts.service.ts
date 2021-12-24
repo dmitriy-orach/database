@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 
 const url: string = 'http://localhost:3000/posts'
@@ -16,7 +16,13 @@ export class PostsService {
     return this.http.get<Post[]>(url);
   }
 
-  public getUserPosts(userId: string): Observable<Post[]> {
-    return this.http.get<Post[]>(url + '/' + userId);
+  public getUserPosts(userId: number): Observable<Post[]> {
+    return this.getPosts().pipe(
+      map(posts => {
+        return posts.filter(post => {
+          return post.userId == userId;
+        })
+      })
+    )
   }
 }

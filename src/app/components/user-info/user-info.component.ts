@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from '../../services/users/users.service'
-import { filter, Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
 
@@ -14,7 +14,7 @@ import { PostsService } from 'src/app/services/posts/posts.service';
 })
 export class UserInfoComponent implements OnInit {
   public user$: Observable<User> | undefined;
-  public posts$: Observable<Post[]> | undefined;
+  public userPosts$: Observable<Post[]> | undefined;
   private userId: any;
 
   constructor(
@@ -27,10 +27,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
     this.user$ = this.usersService.getUser(this.userId);
-    this.posts$ = this.postsService.getUserPosts(this.userId).pipe(take(1)).subscribe((posts: Post[]) => {
-      filter((post: Post) => post.userId == this.userId);
-    });
-
+    this.userPosts$ = this.postsService.getUserPosts(this.userId);
   }
 
   public goBack(): void {
