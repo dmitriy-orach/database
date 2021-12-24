@@ -25,4 +25,20 @@ export class PostsService {
       })
     )
   }
+
+  public postNewPost(newPost: Post): Observable<Post> {
+    return this.http.post<Post>(url, newPost);
+  }
+
+  public editPost(postId: string, editedPost: Post): Observable<Post> {
+    return this.http.put<Post>(url + '/' + postId, editedPost);
+  }
+
+  public getPost(id: number): Observable<Post> {
+    return this.http.get<Post>(url + '/' + id);
+  }
+
+  public removePost(id: number): Observable<Post> {
+    return this.http.delete<Post>(url + '/' + id);
+  }
 }

@@ -43,7 +43,8 @@
             <app-modal-edit-user [user]="user" (isEdited)="updateUser($event)"></app-modal-edit-user>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
-            <app-post *ngFor="let post of posts" [post]="post"></app-post>
+            <app-modal-new-post [userId]="user.id" (isUpdate)="updatePosts($event)"></app-modal-new-post>
+            <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts($event)"></app-post>
         </div>
     </div>
 </div>

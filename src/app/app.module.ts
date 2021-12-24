@@ -16,6 +16,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { ModalEditUserComponent } from './components/modal-edit-user/modal-edit-user.component';
 import { PostComponent } from './components/post/post.component';
+import { ModalNewPostComponent } from './components/modal-new-post/modal-new-post.component';
+import { ModalEditPostComponent } from './components/modal-edit-post/modal-edit-post.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { PostComponent } from './components/post/post.component';
     ModalNewUserComponent,
     UserInfoComponent,
     ModalEditUserComponent,
-    PostComponent
+    PostComponent,
+    ModalNewPostComponent,
+    ModalEditPostComponent
   ],
   imports: [
     BrowserModule,

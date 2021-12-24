@@ -1,4 +1,10 @@
 <div class="post">
-    <h1>{{post.title}}</h1>
-    <p>{{post.body}}</p>
+    <div class="post-info">
+        <div class="btn-group">
+            <app-modal-edit-post [post]="post" (isEdited)="updatePost($event)"></app-modal-edit-post>
+            <button kendoButton icon="delete" [primary]="true" (click)="removePost()">Remove</button>
+        </div>
+        <h1>{{post.title}}</h1>
+        <p>{{post.body}}</p>
+    </div>
 </div>
