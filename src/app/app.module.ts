@@ -19,6 +19,7 @@ import { PostComponent } from './components/post/post.component';
 import { ModalNewPostComponent } from './components/modal-new-post/modal-new-post.component';
 import { ModalEditPostComponent } from './components/modal-edit-post/modal-edit-post.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CommentComponent } from './components/comment/comment.component';
     PostComponent,
     ModalNewPostComponent,
     ModalEditPostComponent,
-    CommentComponent
+    CommentComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,

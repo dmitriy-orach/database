@@ -1,0 +1,17 @@
+<button kendoButton class="k-primary" (click)="open()">{{btnText}}</button>
+<kendo-dialog
+    [title]="title" 
+    *ngIf="opened" 
+    (close)="close()" 
+    [minWidth]="600" 
+>
+    <ng-container [ngTemplateOutlet]="template"></ng-container>
+    <div class="k-actions k-actions-end">
+        <button type="button" class="k-button" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" class="k-button k-primary" (click)="submit()">
+            Submit
+        </button>
+    </div>
+</kendo-dialog>
