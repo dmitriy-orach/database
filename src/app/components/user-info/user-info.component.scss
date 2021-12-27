@@ -27,3 +27,11 @@
         padding-right: 15px;
     }
 }
+
+app-post {
+    display: block;
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}

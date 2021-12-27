@@ -1,4 +1,4 @@
-.post-info {
+.post {
     border: 1px solid #3f51b5;
     padding: 10px 15px;
 }
@@ -11,4 +11,16 @@
 
 app-modal-edit-post {
     margin-right: 10px;
+}
+
+app-comment {
+    display: block;
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.comments-btn{
+    margin-bottom: 10px;
 }

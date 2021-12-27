@@ -1,19 +1,31 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { take } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { take, Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
+import { Comment } from '../../interfaces/comment';
+import { CommentsService } from './../../services/comments/comments.service';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
+  public comments$: Observable<Comment[]> | undefined;
+  public toggle: boolean = false;
+
   @Input() post: Post;
   
   @Output() isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
   
-  constructor( private postsService: PostsService ) { }
+  constructor(
+    private postsService: PostsService,
+    private  commentsService: CommentsService  
+  ) { }
+
+  ngOnInit() {
+    this.comments$ = this.commentsService.getCommentsOfUser(this.post.id);
+  }
 
   public removePost(): void {
     this.postsService.removePost(this.post.id).subscribe(
@@ -31,5 +43,9 @@ export class PostComponent {
     if(!!event) {
       this.postsService.getPost(this.post.id).pipe(take(1)).subscribe(post => this.post = post);
     }
+  }
+
+  public toggleComments(): void {
+    this.toggle = !this.toggle;
   }
 }

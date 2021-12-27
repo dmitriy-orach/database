@@ -7,4 +7,13 @@
         <h1>{{post.title}}</h1>
         <p>{{post.body}}</p>
     </div>
+    <div class="comments" *ngIf="comments$ | async as comments">
+        <button kendoButton [primary]="true" (click)="toggleComments()" class="comments-btn">
+            <span *ngIf="!toggle">Show comments</span>
+            <span class="hide-comments-btn" *ngIf="toggle">Hide comments</span>
+        </button>
+        <div *ngIf="toggle">
+            <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+        </div>
+    </div>
 </div>
