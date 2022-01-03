@@ -40,9 +40,7 @@ export class UserInfoComponent implements OnInit {
     }
   }
 
-  public updatePosts(event: any): any {
-    if(!!event) {
-      this.userPosts$ = this.postsService.getUserPosts(this.userId);
-    }
+  public updatePosts(): void {
+    this.userPosts$ = this.postsService.getUserPosts(this.userId);
   }
 }

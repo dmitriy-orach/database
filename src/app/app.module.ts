@@ -19,7 +19,8 @@ import { PostComponent } from './components/post/post.component';
 import { ModalNewPostComponent } from './components/modal-new-post/modal-new-post.component';
 import { ModalEditPostComponent } from './components/modal-edit-post/modal-edit-post.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { ModalWindowComponent } from './components/modal-window/modal-window.component';
+import { PostModalWindowComponent } from './components/post-modal-window/post-modal-window.component';
+import { PostFormComponent } from './components/forms/post-form/post-form.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
     ModalNewPostComponent,
     ModalEditPostComponent,
     CommentComponent,
-    ModalWindowComponent
+    PostModalWindowComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

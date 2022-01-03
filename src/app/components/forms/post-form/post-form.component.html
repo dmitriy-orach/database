@@ -1,0 +1,23 @@
+<form  class="k-form" [formGroup]="PostForm">
+    <fieldset>
+        <legend>{{title}}</legend>
+        <div *ngIf="PostForm.invalid">
+            <span class="error">Fields marked with * are required</span>
+        </div>
+
+        <label class="k-form-field">
+            <span class="error">*</span><span>Post title</span>
+            <input class="k-textbox" placeholder="Post title" formControlName="title" />
+        </label>
+        <div *ngIf="PostForm.controls['title'].invalid && PostForm.controls['title'].touched">
+            <span class="error">The title field must be filled!</span>
+        </div>
+        <label class="k-form-field">
+            <span class="error">*</span><span>Post text</span>
+            <input class="k-textbox" name="body" placeholder="Post text" formControlName="body" />
+        </label>
+        <div *ngIf="PostForm.controls['body'].invalid && PostForm.controls['body'].touched">
+            <span class="error">The body field must be filled!</span>
+        </div>
+    </fieldset>
+</form>

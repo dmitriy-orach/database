@@ -43,12 +43,13 @@
             <app-modal-edit-user [user]="user" (isEdited)="updateUser($event)"></app-modal-edit-user>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
-            <app-modal-window [title]="'Please fill in the new post'" [btnText]="'Add post'">
-                <ng-template>
-                    
-                </ng-template>
-            </app-modal-window>
-            <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts($event)"></app-post>
+            <app-post-modal-window 
+                [title]="'Please fill in the new post'" 
+                [btnText]="'Add post'"
+                [userId]="user.id"
+                (updatePosts)="updatePosts()"
+            ></app-post-modal-window>
+            <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts()"></app-post>
         </div>
     </div>
 </div>
