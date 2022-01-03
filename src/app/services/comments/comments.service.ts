@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Comment } from 'src/app/interfaces/comment';
-
-const url: string = 'http://localhost:3000/comments'
+import { link } from 'src/assets/variables';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class CommentsService {
   constructor(private http: HttpClient) { }
 
   private getComments(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(url);
+    return this.http.get<Comment[]>(link.replace('${}', 'comments'));
   }
 
   public getCommentsOfUser(id: number): Observable<Comment[]> {
