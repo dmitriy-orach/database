@@ -13,8 +13,8 @@ import { PostsService } from 'src/app/services/posts/posts.service';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  public user$: Observable<User> | undefined;
-  public userPosts$: Observable<Post[]> | undefined;
+  public user$: Observable<User>;
+  public userPosts$: Observable<Post[]>;
   private userId: any;
 
   constructor(
@@ -34,10 +34,8 @@ export class UserInfoComponent implements OnInit {
     this.location.back();
   }
 
-  public updateUser(event: any): any {
-    if(!!event) {
-      this.user$ = this.usersService.getUser(this.userId);
-    }
+  public updateUser(): void {
+    this.user$ = this.usersService.getUser(this.userId);
   }
 
   public updatePosts(): void {

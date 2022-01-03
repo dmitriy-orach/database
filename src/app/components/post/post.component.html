@@ -6,6 +6,7 @@
                 [title]="'Please fill in the new post'" 
                 [btnText]="'Edit post'"
                 [userId]="post.userId"
+                [typeModalWindow]="'Edit post'"
                 (updatePosts)="updatePosts()"
             ></app-post-modal-window>
             <button kendoButton icon="delete" [primary]="false" (click)="removePost()">Remove</button>

@@ -11,19 +11,19 @@ import { CommentsService } from './../../services/comments/comments.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  public comments$: Observable<Comment[]> | undefined;
+  public comments$: Observable<Comment[]>;
   public toggle: boolean = false;
 
-  @Input() post: Post;
+  @Input() public post: Post;
   
-  @Output() isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() public isUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor(
     private postsService: PostsService,
     private  commentsService: CommentsService  
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.comments$ = this.commentsService.getCommentsOfUser(this.post.id);
   }
 

@@ -1,1 +1,21 @@
-<p>user-modal-window works!</p>
+<button kendoButton class="k-primary" (click)="open()">{{btnText}}</button>
+<kendo-dialog 
+    *ngIf="opened"
+    (close)="close()"
+    [minWidth]="600"
+    [title]="title"
+>   
+    <app-user-form
+        [usersLength]="usersLength"
+        [user]="user"
+        (dataUser)="postUser($event)"
+    ></app-user-form>
+    <div class="k-actions k-actions-end">
+        <button type="button" class="k-button" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" class="k-button k-primary" (click)="submit()">
+            Submit
+        </button>
+    </div>
+</kendo-dialog>

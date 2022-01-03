@@ -1,5 +1,11 @@
 <div class="users-list" *ngIf="users$ | async as users">
-    <app-modal-new-user [usersLength]="users.length" (isUpdate)="updateUsers($event)"></app-modal-new-user>
+    <app-user-modal-window 
+        [title]="'Fill in the details of the new user'"
+        [btnText]="'Add user'"
+        [usersLength]="users.length"
+        [typeModalWindow]="'Add user'"
+        (updateUsers)="updateUsers()"
+    ></app-user-modal-window>
 
     <kendo-grid [data]="users">
         <kendo-grid-column class="btn">

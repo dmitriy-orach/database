@@ -40,13 +40,20 @@
                 <p>Company scope: {{user.company.scope}}</p>
             </div>
 
-            <app-modal-edit-user [user]="user" (isEdited)="updateUser($event)"></app-modal-edit-user>
+            <app-user-modal-window 
+                [title]="'Please edited in the user information'"
+                [btnText]="'Edit user'"
+                [user]="user"
+                [typeModalWindow]="'Edit user'"
+                (updateUser)="updateUser()"
+            ></app-user-modal-window>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
             <app-post-modal-window 
                 [title]="'Please fill in the new post'" 
                 [btnText]="'Add post'"
                 [userId]="user.id"
+                [typeModalWindow]="'Add post'"
                 (updatePosts)="updatePosts()"
             ></app-post-modal-window>
             <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts()"></app-post>

@@ -7,5 +7,5 @@ import { Comment } from 'src/app/interfaces/comment';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent {
-  @Input() comment: Comment;
+  @Input() public comment: Comment;
 }

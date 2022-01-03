@@ -13,12 +13,13 @@ export class PostModalWindowComponent implements OnInit {
   public opened = false;
   public postsLength: number;
 
-  @ViewChild(PostFormComponent) postForm: PostFormComponent;
+  @ViewChild(PostFormComponent) public postForm: PostFormComponent;
   
   @Input() public btnText: string;
   @Input() public title: string;
   @Input() public userId: number;
-  @Input() public post?: Post;
+  @Input() public post: Post;
+  @Input() public typeModalWindow: string;
 
   @Output() public updatePosts = new EventEmitter;
 
@@ -42,19 +43,32 @@ export class PostModalWindowComponent implements OnInit {
 
   public savePost(dataPost: { title: string, body: string }): void {
     const post: Post = {
-      id: this.postsLength + 1,
+      id: this.post ? this.post.id : this.postsLength + 1,
       userId: this.userId,
       title: dataPost.title,
       body: dataPost.body
     };
 
-    this.postsService.postNewPost(post).subscribe(
-      () => {
-        this.updatePosts.emit();
-      },
-      (error: any)  => console.log(error)
-    );
-    
-    this.close();
+    switch(this.typeModalWindow) {
+      case 'Add post':
+        this.postsService.postNewPost(post).subscribe(
+          () => {
+            this.updatePosts.emit();
+          },
+          (error)  => console.log(error)
+        );
+        this.close();
+        break;
+
+      case 'Edit post':
+        this.postsService.editPost(this.post.id.toString(), post).subscribe(
+          () => {
+            this.updatePosts.emit();
+          },
+          (error)  => console.log(error)
+        );
+        this.close();
+        break;
+    }
   }
 }

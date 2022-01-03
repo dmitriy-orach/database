@@ -9,12 +9,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { GridModule } from "@progress/kendo-angular-grid";
 import { HttpClientModule }   from '@angular/common/http';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { ModalNewUserComponent } from './components/modal-new-user/modal-new-user.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ListViewModule } from '@progress/kendo-angular-listview';
-import { ModalEditUserComponent } from './components/modal-edit-user/modal-edit-user.component';
 import { PostComponent } from './components/post/post.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { PostModalWindowComponent } from './components/post-modal-window/post-modal-window.component';
@@ -28,9 +26,7 @@ import { UserFormComponent } from './components/forms/user-form/user-form.compon
     AppComponent,
     UsersListComponent,
     NotFoundComponent,
-    ModalNewUserComponent,
     UserInfoComponent,
-    ModalEditUserComponent,
     PostComponent,
     CommentComponent,
     PostModalWindowComponent,

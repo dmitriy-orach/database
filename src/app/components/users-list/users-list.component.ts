@@ -10,7 +10,7 @@ import { UsersService } from '../../services/users/users.service'
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  public users$: Observable<User[]> | undefined;
+  public users$: Observable<User[]>;
 
   constructor(
     private usersService: UsersService,
@@ -21,13 +21,11 @@ export class UsersListComponent implements OnInit {
     this.users$ = this.usersService.getUsers();
   }
 
-  public updateUsers(event: any): void {
-    if(!!event) {
+  public updateUsers(): void {
       this.users$ = this.usersService.getUsers();
-    }
   }
 
-  public dblClick(user: User) {
+  public dblClick(user: User): void {
     this.router.navigate(
       ['/user-info', user.id]
     )
