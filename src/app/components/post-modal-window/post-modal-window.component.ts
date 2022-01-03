@@ -18,6 +18,7 @@ export class PostModalWindowComponent implements OnInit {
   @Input() public btnText: string;
   @Input() public title: string;
   @Input() public userId: number;
+  @Input() public post?: Post;
 
   @Output() public updatePosts = new EventEmitter;
 

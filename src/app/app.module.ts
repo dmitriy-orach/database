@@ -16,8 +16,6 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { ModalEditUserComponent } from './components/modal-edit-user/modal-edit-user.component';
 import { PostComponent } from './components/post/post.component';
-import { ModalNewPostComponent } from './components/modal-new-post/modal-new-post.component';
-import { ModalEditPostComponent } from './components/modal-edit-post/modal-edit-post.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { PostModalWindowComponent } from './components/post-modal-window/post-modal-window.component';
 import { PostFormComponent } from './components/forms/post-form/post-form.component';
@@ -32,8 +30,6 @@ import { PostFormComponent } from './components/forms/post-form/post-form.compon
     UserInfoComponent,
     ModalEditUserComponent,
     PostComponent,
-    ModalNewPostComponent,
-    ModalEditPostComponent,
     CommentComponent,
     PostModalWindowComponent,
     PostFormComponent

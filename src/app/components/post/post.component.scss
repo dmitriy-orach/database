@@ -7,10 +7,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-}
 
-app-modal-edit-post {
-    margin-right: 10px;
+    &::ng-deep{
+        .modal-window-button {
+            margin: 0 15px 0 0;
+        }
+    }
 }
 
 app-comment {

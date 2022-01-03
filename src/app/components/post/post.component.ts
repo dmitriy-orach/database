@@ -39,10 +39,8 @@ export class PostComponent implements OnInit {
     );
   }
 
-  public updatePost(event: any): any {
-    if(!!event) {
+  public updatePosts(): void {
       this.postsService.getPost(this.post.id).pipe(take(1)).subscribe(post => this.post = post);
-    }
   }
 
   public toggleComments(): void {
