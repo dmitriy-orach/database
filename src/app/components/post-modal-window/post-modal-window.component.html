@@ -6,7 +6,11 @@
     [minWidth]="600" 
 >
     
-    <app-post-form [title]="'New post'" (dataPost)="savePost($event)"></app-post-form>
+    <app-post-form 
+        [title]="'New post'"
+        [post]="post"
+        (dataPost)="savePost($event)"
+    ></app-post-form>
     <div class="k-actions k-actions-end">
         <button type="button" class="k-button" (click)="close()">
             Cancel

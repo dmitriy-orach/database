@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Post } from 'src/app/interfaces/post';
 
 @Component({
   selector: 'app-post-form',
@@ -10,16 +11,24 @@ export class PostFormComponent implements OnInit {
   public PostForm: FormGroup;
 
   @Input() public title: string;
+  @Input() public post?: Post;
 
   @Output() public dataPost: EventEmitter<{title: string, body: string}> = new EventEmitter;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.PostForm = new FormGroup({
-      "title": new FormControl('', Validators.required),
-      "body": new FormControl('', Validators.required)
-    });
+    if(this.post) {
+      this.PostForm = new FormGroup({
+        "title": new FormControl(this.post.title, Validators.required),
+        "body": new FormControl(this.post.body, Validators.required)
+      });
+    } else {
+      this.PostForm = new FormGroup({
+        "title": new FormControl('', Validators.required),
+        "body": new FormControl('', Validators.required)
+      });
+    }
   }
 
   public submit(): void {
