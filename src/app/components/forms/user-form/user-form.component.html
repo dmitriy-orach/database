@@ -1,53 +1,98 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
+        <div *ngIf="userForm.invalid">
+            <span class="error">Fields marked with * are required</span>
+        </div>
 
         <label class="k-form-field">
-            <span>First name</span>
+            <span class="error">*</span><span>First name</span>
             <input class="k-textbox" placeholder="First name" formControlName="firstName" />
+            <div 
+                *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched" 
+                class="error">
+                Name specified incorrectly!</div>
+            <div 
+                *ngIf="firstName.errors?.['maxlength'] && userForm.controls['firstName'].touched"
+                class="error">
+                The maximum number of characters allowed is 55!
+            </div>
+            <div 
+                *ngIf="firstName.errors?.['pattern'] && userForm.controls['firstName'].touched"
+                class="error">
+                Name cannot contain numbers!
+            </div> 
         </label>
         <label class="k-form-field">
-            <span>Last name</span>
+            <span class="error">*</span><span>Last name</span>
             <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
+            <div 
+                *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched" 
+                class="error">
+                Last name specified incorrectly!</div>
+            <div 
+                *ngIf="lastName.errors?.['maxlength'] && userForm.controls['lastName'].touched"
+                class="error">
+                The maximum number of characters allowed is 55!
+            </div>
+            <div 
+                *ngIf="lastName.errors?.['pattern'] && userForm.controls['lastName'].touched"
+                class="error">
+                Last name cannot contain numbers!
+            </div> 
         </label>
         <label class="k-form-field">
-            <span>Nickname</span>
+            <span class="error">*</span><span>Nickname</span>
             <input class="k-textbox" placeholder="Nickname" formControlName="nickName" />
         </label>
         <label class="k-form-field">
-            <span>Email</span>
+            <span class="error">*</span><span>Email</span>
             <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
+            <div 
+                *ngIf="userEmail.errors?.['pattern'] && userForm.controls['userEmail'].touched"
+                class="error">
+                Incorrect email!
+            </div> 
         </label>
         <label class="k-form-field">
-            <span>Phone</span>
+            <span class="error">*</span><span>Phone</span>
             <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
+            <div 
+                *ngIf="userForm.controls['userPhone'].invalid && userForm.controls['userPhone'].touched" 
+                class="error">
+                Phone specified incorrectly!</div>
+            <div 
+                *ngIf="userPhone.errors?.['pattern'] && userForm.controls['userPhone'].touched"
+                class="error">
+                The phone should only contain numbers!
+            </div> 
         </label>
         <label class="k-form-field">
-            <span>City</span>
+            <span class="error">*</span><span>City</span>
             <input class="k-textbox" placeholder="City" formControlName="city" />
         </label>
         <label class="k-form-field">
-            <span>Street</span>
+            <span class="error">*</span><span>Street</span>
             <input class="k-textbox" placeholder="Street" formControlName="street" />
         </label>
         <label class="k-form-field">
-            <span>Building</span>
+            <span class="error">*</span><span>Building</span>
             <input class="k-textbox" placeholder="Building" formControlName="building" />
         </label>
         <label class="k-form-field">
-            <span>Zipcode</span>
+            <span class="error">*</span><span>Zipcode</span>
             <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
         </label>
         <label class="k-form-field">
-            <span>Website</span>
+            <span class="error">*</span><span>Website</span>
             <input class="k-textbox" placeholder="Website" formControlName="website" />
         </label>
         <label class="k-form-field">
-            <span>Company name</span>
+            <span class="error">*</span><span>Company name</span>
             <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
         </label>
         <label class="k-form-field">
-            <span>Company scope</span>
+            <span class="error">*</span><span>Company scope</span>
             <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
         </label>
     </fieldset>

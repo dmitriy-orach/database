@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 
 @Component({
@@ -11,7 +11,7 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
 
   @Input() public usersLength: number;
-  @Input() public user?: User;
+  @Input() public user: User;
 
   @Output() public dataUser: EventEmitter<User> = new EventEmitter;
   
@@ -20,11 +20,11 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
     if(this.user) {
       this.userForm = new FormGroup({
-        "firstName": new FormControl(this.user.firstName, Validators.required),
-        "lastName": new FormControl(this.user.lastName, Validators.required),
+        "firstName": new FormControl(this.user.firstName, {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
+        "lastName": new FormControl(this.user.lastName, {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
         "nickName": new FormControl(this.user.username, Validators.required),
-        "userEmail": new FormControl(this.user.email, Validators.required),
-        "userPhone": new FormControl(this.user.phone, Validators.required),
+        "userEmail": new FormControl(this.user.email, { validators: [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], updateOn: "blur"}),
+        "userPhone": new FormControl(this.user.phone, {validators: [Validators.required, Validators.pattern("[+\+0-9]{13}")], updateOn: "blur"}),
         "street": new FormControl(this.user.address.street, Validators.required),
         "building": new FormControl(this.user.address.building, Validators.required),
         "city": new FormControl(this.user.address.city, Validators.required),
@@ -35,11 +35,11 @@ export class UserFormComponent implements OnInit {
       });
     } else {
       this.userForm = new FormGroup({
-        "firstName": new FormControl('', Validators.required),
-        "lastName": new FormControl('', Validators.required),
+        "firstName": new FormControl('', {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
+        "lastName": new FormControl('', {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
         "nickName": new FormControl('', Validators.required),
-        "userEmail": new FormControl('', Validators.required),
-        "userPhone": new FormControl('', Validators.required),
+        "userEmail": new FormControl('', { validators: [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], updateOn: "blur" }),
+        "userPhone": new FormControl('+380', {validators: [Validators.required, Validators.pattern("[+\+0-9]{13}")], updateOn: "blur"}),
         "street": new FormControl('', Validators.required),
         "building": new FormControl('', Validators.required),
         "city": new FormControl('', Validators.required),
@@ -76,4 +76,20 @@ export class UserFormComponent implements OnInit {
       this.userForm.reset();
     }
   }
+
+  get firstName(): AbstractControl {
+    return this.userForm.get('firstName') as AbstractControl;
+  }
+
+  get lastName(): AbstractControl {
+    return this.userForm.get('lastName') as AbstractControl;
+  }
+
+  get userPhone(): AbstractControl {
+    return this.userForm.get('userPhone') as AbstractControl;
+  }
+
+  get userEmail(): AbstractControl {
+    return this.userForm.get('userEmail') as AbstractControl;
+  } 
 }
