@@ -1,5 +1,6 @@
 <div class="container" *ngIf="user$ | async as user">
     <button kendoButton class="k-primary" (click)="goBack()">Back</button>
+    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">Edit user</button>
     <div class="user-info">
         <div class="user-info_person">
             <h1>User info</h1>
@@ -39,24 +40,28 @@
                 <p>Company name: {{user.company.name}}</p>
                 <p>Company scope: {{user.company.scope}}</p>
             </div>
-
-            <app-user-modal-window 
-                [title]="'Please edited in the user information'"
-                [btnText]="'Edit user'"
-                [user]="user"
-                [typeModalWindow]="'Edit user'"
-                (updateUser)="updateUser()"
-            ></app-user-modal-window>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
-            <app-post-modal-window 
-                [title]="'Please fill in the new post'" 
-                [btnText]="'Add post'"
-                [userId]="user.id"
-                [typeModalWindow]="'Add post'"
-                (updatePosts)="updatePosts()"
-            ></app-post-modal-window>
+            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">Add post</button>
             <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts()"></app-post>
         </div>
     </div>
+
+    <app-user-modal-window
+        *ngIf="isOpenUserModal"
+        [title]="'Please edited in the user information'"
+        [user]="user"
+        [typeModalWindow]="'Edit user'"
+        (updateUser)="updateUser()"
+        (closeModal)="closeUserModal()"
+    ></app-user-modal-window>
+
+    <app-post-modal-window
+        *ngIf="isOpenPostModal"
+        [title]="'Please fill in the new post'" 
+        [userId]="user.id"
+        [typeModalWindow]="'Add post'"
+        (updatePosts)="updatePosts()"
+        (closeModal)="closePostModal()"
+    ></app-post-modal-window>
 </div>

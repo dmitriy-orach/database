@@ -1,14 +1,8 @@
 <div class="post">
     <div class="post-info">
         <div class="btn-group">
-            <app-post-modal-window 
-                [post]="post"
-                [title]="'Please fill in the new post'" 
-                [btnText]="'Edit post'"
-                [userId]="post.userId"
-                [typeModalWindow]="'Edit post'"
-                (updatePosts)="updatePosts()"
-            ></app-post-modal-window>
+            
+            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">Edit post</button>
             <button kendoButton icon="delete" [primary]="false" (click)="removePost()">Remove</button>
         </div>
         <h1>{{post.title}}</h1>
@@ -24,3 +18,13 @@
         </div>
     </div>
 </div>
+
+<app-post-modal-window 
+    *ngIf="isOpenPostModal"
+    [post]="post"
+    [title]="'Please fill in the new post'" 
+    [userId]="post.userId"
+    [typeModalWindow]="'Edit post'"
+    (updatePosts)="updatePosts()"
+    (closeModal)="closePostModal()"
+></app-post-modal-window>

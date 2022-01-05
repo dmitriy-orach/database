@@ -10,18 +10,17 @@ import { PostFormComponent } from '../forms/post-form/post-form.component';
   styleUrls: ['./post-modal-window.component.scss']
 })
 export class PostModalWindowComponent implements OnInit {
-  public opened = false;
   public postsLength: number;
 
   @ViewChild(PostFormComponent) public postForm: PostFormComponent;
   
-  @Input() public btnText: string;
   @Input() public title: string;
   @Input() public userId: number;
   @Input() public post: Post;
   @Input() public typeModalWindow: string;
 
   @Output() public updatePosts = new EventEmitter;
+  @Output() public closeModal = new EventEmitter;
 
   constructor(private postsService: PostsService) { }
 
@@ -30,11 +29,7 @@ export class PostModalWindowComponent implements OnInit {
   }
 
   public close(): void {
-    this.opened = false;
-  }
-
-  public open(): void {
-    this.opened = true;
+    this.closeModal.emit();
   }
 
   public submit(): void {
@@ -51,23 +46,23 @@ export class PostModalWindowComponent implements OnInit {
 
     switch(this.typeModalWindow) {
       case 'Add post':
-        this.postsService.postNewPost(post).subscribe(
+        this.postsService.postNewPost(post).pipe(take(1)).subscribe(
           () => {
             this.updatePosts.emit();
+            this.close();
           },
           (error)  => console.log(error)
         );
-        this.close();
         break;
 
       case 'Edit post':
-        this.postsService.editPost(this.post.id.toString(), post).subscribe(
+        this.postsService.editPost(this.post.id.toString(), post).pipe(take(1)).subscribe(
           () => {
             this.updatePosts.emit();
+            this.close();
           },
           (error)  => console.log(error)
         );
-        this.close();
         break;
     }
   }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { take, Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
+import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { Comment } from '../../interfaces/comment';
 import { CommentsService } from './../../services/comments/comments.service';
@@ -13,6 +14,7 @@ import { CommentsService } from './../../services/comments/comments.service';
 export class PostComponent implements OnInit {
   public comments$: Observable<Comment[]>;
   public toggle: boolean = false;
+  public isOpenPostModal: boolean = false;
 
   @Input() public post: Post;
   
@@ -20,7 +22,8 @@ export class PostComponent implements OnInit {
   
   constructor(
     private postsService: PostsService,
-    private  commentsService: CommentsService  
+    private  commentsService: CommentsService,
+    private modalWindowService: ModalWindowService
   ) { }
 
   public ngOnInit(): void {
@@ -40,10 +43,19 @@ export class PostComponent implements OnInit {
   }
 
   public updatePosts(): void {
+      this.closePostModal();
       this.postsService.getPost(this.post.id.toString()).pipe(take(1)).subscribe(post => this.post = post);
   }
 
   public toggleComments(): void {
     this.toggle = !this.toggle;
+  }
+
+  public openPostModal(): void {
+    this.isOpenPostModal = this.modalWindowService.open();
+  }
+
+  public closePostModal(): void {
+    this.isOpenPostModal = this.modalWindowService.close();
   }
 }

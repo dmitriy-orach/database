@@ -1,12 +1,5 @@
 <div class="users-list" *ngIf="users$ | async as users">
-    <app-user-modal-window 
-        [title]="'Fill in the details of the new user'"
-        [btnText]="'Add user'"
-        [usersLength]="users.length"
-        [typeModalWindow]="'Add user'"
-        (updateUsers)="updateUsers()"
-    ></app-user-modal-window>
-
+    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">Add user</button>
     <kendo-grid [data]="users">
         <kendo-grid-column class="btn">
             <ng-template kendoGridCellTemplate let-dataItem>
@@ -19,4 +12,13 @@
         <kendo-grid-column field="address.city" title="User address"> </kendo-grid-column>
         <kendo-grid-column field="phone" title="User Phone"> </kendo-grid-column>
     </kendo-grid>
+
+    <app-user-modal-window
+        *ngIf="isOpenUserModal"
+        [title]="'Fill in the details of the new user'"
+        [usersLength]="users.length"
+        [typeModalWindow]="'Add user'"
+        (updateUsers)="updateUsers()"
+        (closeModal)="closeUserModal()"
+    ></app-user-modal-window>
 </div>
