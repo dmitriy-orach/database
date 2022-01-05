@@ -9,16 +9,16 @@
             <span class="error">*</span><span>First name</span>
             <input class="k-textbox" placeholder="First name" formControlName="firstName" />
             <div 
-                *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched" 
+                *ngIf="userForm.controls['firstName'].invalid" 
                 class="error">
                 Name specified incorrectly!</div>
             <div 
-                *ngIf="firstName.errors?.['maxlength'] && userForm.controls['firstName'].touched"
+                *ngIf="firstName.errors?.['maxlength']"
                 class="error">
                 The maximum number of characters allowed is 55!
             </div>
             <div 
-                *ngIf="firstName.errors?.['pattern'] && userForm.controls['firstName'].touched"
+                *ngIf="firstName.errors?.['pattern']"
                 class="error">
                 Name cannot contain numbers!
             </div> 
@@ -27,16 +27,16 @@
             <span class="error">*</span><span>Last name</span>
             <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
             <div 
-                *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched" 
+                *ngIf="userForm.controls['lastName'].invalid" 
                 class="error">
                 Last name specified incorrectly!</div>
             <div 
-                *ngIf="lastName.errors?.['maxlength'] && userForm.controls['lastName'].touched"
+                *ngIf="lastName.errors?.['maxlength']"
                 class="error">
                 The maximum number of characters allowed is 55!
             </div>
             <div 
-                *ngIf="lastName.errors?.['pattern'] && userForm.controls['lastName'].touched"
+                *ngIf="lastName.errors?.['pattern']"
                 class="error">
                 Last name cannot contain numbers!
             </div> 
@@ -49,7 +49,7 @@
             <span class="error">*</span><span>Email</span>
             <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
             <div 
-                *ngIf="userEmail.errors?.['pattern'] && userForm.controls['userEmail'].touched"
+                *ngIf="userEmail.errors?.['pattern']"
                 class="error">
                 Incorrect email!
             </div> 
@@ -58,11 +58,11 @@
             <span class="error">*</span><span>Phone</span>
             <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
             <div 
-                *ngIf="userForm.controls['userPhone'].invalid && userForm.controls['userPhone'].touched" 
+                *ngIf="userForm.controls['userPhone'].invalid" 
                 class="error">
                 Phone specified incorrectly!</div>
             <div 
-                *ngIf="userPhone.errors?.['pattern'] && userForm.controls['userPhone'].touched"
+                *ngIf="userPhone.errors?.['pattern']"
                 class="error">
                 The phone should only contain numbers!
             </div> 

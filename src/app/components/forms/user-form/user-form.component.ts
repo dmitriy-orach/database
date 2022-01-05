@@ -20,11 +20,11 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
     if(this.user) {
       this.userForm = new FormGroup({
-        "firstName": new FormControl(this.user.firstName, {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
-        "lastName": new FormControl(this.user.lastName, {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
+        "firstName": new FormControl(this.user.firstName, [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
+        "lastName": new FormControl(this.user.lastName, [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
         "nickName": new FormControl(this.user.username, Validators.required),
-        "userEmail": new FormControl(this.user.email, { validators: [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], updateOn: "blur"}),
-        "userPhone": new FormControl(this.user.phone, {validators: [Validators.required, Validators.pattern("[+\+0-9]{13}")], updateOn: "blur"}),
+        "userEmail": new FormControl(this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+        "userPhone": new FormControl(this.user.phone, [Validators.required, Validators.pattern("[+\+0-9]{13}")]),
         "street": new FormControl(this.user.address.street, Validators.required),
         "building": new FormControl(this.user.address.building, Validators.required),
         "city": new FormControl(this.user.address.city, Validators.required),
@@ -35,11 +35,11 @@ export class UserFormComponent implements OnInit {
       });
     } else {
       this.userForm = new FormGroup({
-        "firstName": new FormControl('', {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
-        "lastName": new FormControl('', {validators: [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')], updateOn: "blur"}),
+        "firstName": new FormControl('', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
+        "lastName": new FormControl('', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
         "nickName": new FormControl('', Validators.required),
-        "userEmail": new FormControl('', { validators: [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')], updateOn: "blur" }),
-        "userPhone": new FormControl('+380', {validators: [Validators.required, Validators.pattern("[+\+0-9]{13}")], updateOn: "blur"}),
+        "userEmail": new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+        "userPhone": new FormControl('+380', [Validators.required, Validators.pattern("[+\+0-9]{13}")]),
         "street": new FormControl('', Validators.required),
         "building": new FormControl('', Validators.required),
         "city": new FormControl('', Validators.required),
