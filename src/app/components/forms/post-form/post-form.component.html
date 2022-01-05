@@ -5,16 +5,16 @@
         <label class="k-form-field">
             <span class="error">*</span><span>Post title</span>
             <input class="k-textbox" placeholder="Post title" formControlName="title" />
+            <ul *ngIf="postForm.controls['title'].invalid" class="error">
+                <li *ngIf="postTitle.errors?.['required']">Title is required!</li>
+            </ul>
         </label>
-        <div *ngIf="postForm.controls['title'].invalid">
-            <span class="error">The title field must be filled!</span>
-        </div>
         <label class="k-form-field">
             <span class="error">*</span><span>Post text</span>
             <input class="k-textbox" name="body" placeholder="Post text" formControlName="body" />
+            <ul *ngIf="postForm.controls['body'].invalid" class="error">
+                <li *ngIf="postBody.errors?.['required']">Text is required!</li>
+            </ul>
         </label>
-        <div *ngIf="postForm.controls['body'].invalid">
-            <span class="error">The body field must be filled!</span>
-        </div>
     </fieldset>
 </form>

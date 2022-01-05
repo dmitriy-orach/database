@@ -1,99 +1,96 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
-        <div *ngIf="userForm.invalid">
-            <span class="error">Fields marked with * are required</span>
-        </div>
 
         <label class="k-form-field">
             <span class="error">*</span><span>First name</span>
             <input class="k-textbox" placeholder="First name" formControlName="firstName" />
-            <div 
-                *ngIf="userForm.controls['firstName'].invalid" 
-                class="error">
-                Name specified incorrectly!</div>
-            <div 
-                *ngIf="firstName.errors?.['maxlength']"
-                class="error">
-                The maximum number of characters allowed is 55!
-            </div>
-            <div 
-                *ngIf="firstName.errors?.['pattern']"
-                class="error">
-                Name cannot contain numbers!
-            </div> 
+            <ul *ngIf="userForm.controls['firstName'].invalid" class="error">
+                <li *ngIf="firstName.errors?.['required']">Name is required!</li>
+                <li *ngIf="firstName.errors?.['maxlength']">The maximum number of characters allowed is 55!</li>
+                <li *ngIf="firstName.errors?.['pattern']">Name cannot contain numbers and symbols!</li> 
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Last name</span>
             <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
-            <div 
-                *ngIf="userForm.controls['lastName'].invalid" 
-                class="error">
-                Last name specified incorrectly!</div>
-            <div 
-                *ngIf="lastName.errors?.['maxlength']"
-                class="error">
-                The maximum number of characters allowed is 55!
-            </div>
-            <div 
-                *ngIf="lastName.errors?.['pattern']"
-                class="error">
-                Last name cannot contain numbers!
-            </div> 
+            <ul *ngIf="userForm.controls['lastName'].invalid" class="error">
+                <li *ngIf="lastName.errors?.['required']">Last name is required!</li>
+                <li *ngIf="lastName.errors?.['maxlength']">The maximum number of characters allowed is 55!</li>
+                <li *ngIf="lastName.errors?.['pattern']">Last name cannot contain numbers and symbols!</li> 
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Nickname</span>
             <input class="k-textbox" placeholder="Nickname" formControlName="nickName" />
+            <ul *ngIf="userForm.controls['nickName'].invalid" class="error">
+                <li *ngIf="nickName.errors?.['required']">Nickname is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Email</span>
             <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
-            <div 
-                *ngIf="userEmail.errors?.['pattern']"
-                class="error">
-                Incorrect email!
-            </div> 
+            <ul *ngIf="userForm.controls['userEmail'].invalid" class="error">
+                <li *ngIf="userEmail.errors?.['required']">Email is required!</li>
+                <li *ngIf="userEmail.errors?.['pattern']">Incorrect email!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Phone</span>
             <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
-            <div 
-                *ngIf="userForm.controls['userPhone'].invalid" 
-                class="error">
-                Phone specified incorrectly!</div>
-            <div 
-                *ngIf="userPhone.errors?.['pattern']"
-                class="error">
-                The phone should only contain numbers!
-            </div> 
+            <ul *ngIf="userForm.controls['userPhone'].invalid" class="error">
+                <li *ngIf="userPhone.errors?.['required']">Phone is required!</li>
+                <li *ngIf="userPhone.errors?.['pattern']">The phone should only contain numbers!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>City</span>
             <input class="k-textbox" placeholder="City" formControlName="city" />
+            <ul *ngIf="userForm.controls['city'].invalid" class="error">
+                <li *ngIf="city.errors?.['required']">City is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Street</span>
             <input class="k-textbox" placeholder="Street" formControlName="street" />
+            <ul *ngIf="userForm.controls['street'].invalid" class="error">
+                <li *ngIf="street.errors?.['required']">Street is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Building</span>
             <input class="k-textbox" placeholder="Building" formControlName="building" />
+            <ul *ngIf="userForm.controls['building'].invalid" class="error">
+                <li *ngIf="building.errors?.['required']">Building is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Zipcode</span>
             <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
+            <ul *ngIf="userForm.controls['zipcode'].invalid" class="error">
+                <li *ngIf="zipcode.errors?.['required']">Zipcode is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Website</span>
             <input class="k-textbox" placeholder="Website" formControlName="website" />
+            <ul *ngIf="userForm.controls['website'].invalid" class="error">
+                <li *ngIf="website.errors?.['required']">Website is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Company name</span>
             <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
+            <ul *ngIf="userForm.controls['companyName'].invalid" class="error">
+                <li *ngIf="companyName.errors?.['required']">Company name is required!</li>
+            </ul>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Company scope</span>
             <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
+            <ul *ngIf="userForm.controls['companyScope'].invalid" class="error">
+                <li *ngIf="companyScope.errors?.['required']">Company scope is required!</li>
+            </ul>
         </label>
     </fieldset>
 </form>

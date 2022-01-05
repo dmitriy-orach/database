@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/interfaces/post';
 
 @Component({
@@ -18,17 +18,10 @@ export class PostFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(this.post) {
-      this.postForm = new FormGroup({
-        "title": new FormControl(this.post.title, Validators.required),
-        "body": new FormControl(this.post.body, Validators.required)
-      });
-    } else {
-      this.postForm = new FormGroup({
-        "title": new FormControl('', Validators.required),
-        "body": new FormControl('', Validators.required)
-      });
-    }
+    this.postForm = new FormGroup({
+      "title": new FormControl(this.post?.title ?? '', Validators.required),
+      "body": new FormControl(this.post?.body ?? '', Validators.required)
+    });
   }
 
   public submit(): void {
@@ -37,5 +30,13 @@ export class PostFormComponent implements OnInit {
       this.dataPost.emit(post);
       this.postForm.reset();
     }
+  }
+
+  public get postTitle(): AbstractControl {
+    return this.postForm.get('title') as AbstractControl;
+  }
+
+  public get  postBody(): AbstractControl {
+    return this.postForm.get('body') as AbstractControl;
   }
 }

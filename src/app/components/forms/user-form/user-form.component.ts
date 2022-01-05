@@ -18,37 +18,20 @@ export class UserFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(this.user) {
-      this.userForm = new FormGroup({
-        "firstName": new FormControl(this.user.firstName, [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
-        "lastName": new FormControl(this.user.lastName, [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
-        "nickName": new FormControl(this.user.username, Validators.required),
-        "userEmail": new FormControl(this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
-        "userPhone": new FormControl(this.user.phone, [Validators.required, Validators.pattern("[+\+0-9]{13}")]),
-        "street": new FormControl(this.user.address.street, Validators.required),
-        "building": new FormControl(this.user.address.building, Validators.required),
-        "city": new FormControl(this.user.address.city, Validators.required),
-        "zipcode": new FormControl(this.user.address.zipcode, Validators.required),
-        "website": new FormControl(this.user.website, Validators.required),
-        "companyScope": new FormControl(this.user.company.name, Validators.required),
-        "companyName": new FormControl(this.user.company.scope, Validators.required)
-      });
-    } else {
-      this.userForm = new FormGroup({
-        "firstName": new FormControl('', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
-        "lastName": new FormControl('', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
-        "nickName": new FormControl('', Validators.required),
-        "userEmail": new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
-        "userPhone": new FormControl('+380', [Validators.required, Validators.pattern("[+\+0-9]{13}")]),
-        "street": new FormControl('', Validators.required),
-        "building": new FormControl('', Validators.required),
-        "city": new FormControl('', Validators.required),
-        "zipcode": new FormControl('', Validators.required),
-        "website": new FormControl('', Validators.required),
-        "companyScope": new FormControl('', Validators.required),
-        "companyName": new FormControl('', Validators.required)
-      });
-    }
+    this.userForm = new FormGroup({
+      "firstName": new FormControl(this.user?.firstName ?? '', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
+      "lastName": new FormControl(this.user?.lastName ?? '', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
+      "nickName": new FormControl(this.user?.username ?? '', Validators.required),
+      "userEmail": new FormControl(this.user?.email ?? '', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+      "userPhone": new FormControl(this.user?.phone ?? '', [Validators.required, Validators.pattern("[+\+0-9]{13}")]),
+      "street": new FormControl(this.user?.address.street ?? '', Validators.required),
+      "building": new FormControl(this.user?.address.building ?? '', Validators.required),
+      "city": new FormControl(this.user?.address.city ?? '', Validators.required),
+      "zipcode": new FormControl(this.user?.address.zipcode ?? '', Validators.required),
+      "website": new FormControl(this.user?.website ?? '', Validators.required),
+      "companyScope": new FormControl(this.user?.company.name ?? '', Validators.required),
+      "companyName": new FormControl(this.user?.company.scope ?? '', Validators.required)
+    });
   }
 
   public submit(): void {
@@ -77,19 +60,51 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  get firstName(): AbstractControl {
+  public get firstName(): AbstractControl {
     return this.userForm.get('firstName') as AbstractControl;
   }
 
-  get lastName(): AbstractControl {
+  public get lastName(): AbstractControl {
     return this.userForm.get('lastName') as AbstractControl;
   }
 
-  get userPhone(): AbstractControl {
+  public get nickName(): AbstractControl {
+    return this.userForm.get('nickName') as AbstractControl;
+  }
+
+  public get userPhone(): AbstractControl {
     return this.userForm.get('userPhone') as AbstractControl;
   }
 
-  get userEmail(): AbstractControl {
+  public get userEmail(): AbstractControl {
     return this.userForm.get('userEmail') as AbstractControl;
+  } 
+
+  public get city(): AbstractControl {
+    return this.userForm.get('city') as AbstractControl;
+  }
+
+  public get street(): AbstractControl {
+    return this.userForm.get('street') as AbstractControl;
+  } 
+
+  public get building(): AbstractControl {
+    return this.userForm.get('building') as AbstractControl;
+  } 
+
+  public get zipcode(): AbstractControl {
+    return this.userForm.get('zipcode') as AbstractControl;
+  } 
+
+  public get website(): AbstractControl {
+    return this.userForm.get('website') as AbstractControl;
+  }
+
+  public get companyName(): AbstractControl {
+    return this.userForm.get('companyName') as AbstractControl;
+  }
+
+  public get companyScope(): AbstractControl {
+    return this.userForm.get('companyScope') as AbstractControl;
   } 
 }
