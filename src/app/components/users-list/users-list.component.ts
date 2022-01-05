@@ -17,7 +17,7 @@ export class UsersListComponent implements OnInit {
     private router: Router  
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.users$ = this.usersService.getUsers();
   }
 

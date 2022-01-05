@@ -25,7 +25,7 @@ export class PostModalWindowComponent implements OnInit {
 
   constructor(private postsService: PostsService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.postsService.getPosts().pipe(take(1)).subscribe((posts: Post[]) => this.postsLength = posts.length);
   }
 

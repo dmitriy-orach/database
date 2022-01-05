@@ -23,7 +23,7 @@ export class PostComponent implements OnInit {
     private  commentsService: CommentsService  
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.comments$ = this.commentsService.getCommentsOfUser(this.post.id);
   }
 

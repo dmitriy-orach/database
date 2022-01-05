@@ -24,7 +24,7 @@ export class UserInfoComponent implements OnInit {
     private postsService: PostsService
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
     this.user$ = this.usersService.getUser(this.userId);
     this.userPosts$ = this.postsService.getUserPosts(this.userId);

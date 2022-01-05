@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
   
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.userForm = new FormGroup({
       "firstName": new FormControl(this.user?.firstName ?? '', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
       "lastName": new FormControl(this.user?.lastName ?? '', [Validators.required, Validators.maxLength(55), Validators.pattern('[a-zA-Z ]*')]),
