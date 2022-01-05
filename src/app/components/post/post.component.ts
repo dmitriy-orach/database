@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
   }
 
   public removePost(): void {
-    this.postsService.removePost(this.post.id).subscribe(
+    this.postsService.removePost(this.post.id.toString()).subscribe(
       data => {
         console.log("DELETE Request is successful ", data);
         this.isUpdate.emit(true);
@@ -40,7 +40,7 @@ export class PostComponent implements OnInit {
   }
 
   public updatePosts(): void {
-      this.postsService.getPost(this.post.id).pipe(take(1)).subscribe(post => this.post = post);
+      this.postsService.getPost(this.post.id.toString()).pipe(take(1)).subscribe(post => this.post = post);
   }
 
   public toggleComments(): void {
