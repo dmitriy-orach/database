@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { take, Observable } from 'rxjs';
+import { take, Observable, catchError, of } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
@@ -31,13 +31,13 @@ export class PostComponent implements OnInit {
   }
 
   public removePost(): void {
-    this.postsService.removePost(this.post.id.toString()).subscribe(
+    this.postsService.removePost(this.post.id.toString()).pipe(
+      take(1), 
+      catchError(err => of(`Error: ${err}`))
+    ).subscribe(
       data => {
         console.log("DELETE Request is successful ", data);
         this.isUpdate.emit(true);
-      },
-      error => {
-        console.log("Error", error);
       }
     );
   }
