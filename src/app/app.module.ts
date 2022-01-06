@@ -19,6 +19,7 @@ import { PostModalWindowComponent } from './components/post-modal-window/post-mo
 import { PostFormComponent } from './components/forms/post-form/post-form.component';
 import { UserModalWindowComponent } from './components/user-modal-window/user-modal-window.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
+import { BaseComponent } from './components/base/base.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { UserFormComponent } from './components/forms/user-form/user-form.compon
     PostModalWindowComponent,
     PostFormComponent,
     UserModalWindowComponent,
-    UserFormComponent
+    UserFormComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,
