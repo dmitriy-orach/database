@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { take } from 'rxjs';
+import { catchError, of, take } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { PostFormComponent } from '../forms/post-form/post-form.component';
@@ -46,22 +46,26 @@ export class PostModalWindowComponent implements OnInit {
 
     switch(this.typeModalWindow) {
       case 'Add post':
-        this.postsService.postNewPost(post).pipe(take(1)).subscribe(
+        this.postsService.postNewPost(post).pipe(
+          take(1),
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
           () => {
             this.updatePosts.emit();
             this.close();
-          },
-          (error)  => console.log(error)
+          }
         );
         break;
 
       case 'Edit post':
-        this.postsService.editPost(this.post.id.toString(), post).pipe(take(1)).subscribe(
+        this.postsService.editPost(this.post.id.toString(), post).pipe(
+          take(1), 
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
           () => {
             this.updatePosts.emit();
             this.close();
-          },
-          (error)  => console.log(error)
+          }
         );
         break;
     }
