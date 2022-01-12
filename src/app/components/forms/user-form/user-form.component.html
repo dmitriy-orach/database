@@ -5,92 +5,86 @@
         <label class="k-form-field">
             <span class="error">*</span><span>First name</span>
             <input class="k-textbox" placeholder="First name" formControlName="firstName" />
-            <ul *ngIf="userForm.controls['firstName'].invalid" class="error">
-                <li *ngIf="firstName.errors?.['required']">Name is required!</li>
-                <li *ngIf="firstName.errors?.['maxlength']">The maximum number of characters allowed is 55!</li>
-                <li *ngIf="firstName.errors?.['pattern']">Name cannot contain numbers and symbols!</li> 
-            </ul>
+            <div *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched" class="error">
+                <span>{{validationMessages('firstName')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Last name</span>
             <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
-            <ul *ngIf="userForm.controls['lastName'].invalid" class="error">
-                <li *ngIf="lastName.errors?.['required']">Last name is required!</li>
-                <li *ngIf="lastName.errors?.['maxlength']">The maximum number of characters allowed is 55!</li>
-                <li *ngIf="lastName.errors?.['pattern']">Last name cannot contain numbers and symbols!</li> 
-            </ul>
+            <div *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched" class="error">
+                <span>{{validationMessages('lastName')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Nickname</span>
             <input class="k-textbox" placeholder="Nickname" formControlName="nickName" />
-            <ul *ngIf="userForm.controls['nickName'].invalid" class="error">
-                <li *ngIf="nickName.errors?.['required']">Nickname is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['nickName'].invalid && userForm.controls['nickName'].touched" class="error">
+                <span>{{validationMessages('nickName')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Email</span>
             <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
-            <ul *ngIf="userForm.controls['userEmail'].invalid" class="error">
-                <li *ngIf="userEmail.errors?.['required']">Email is required!</li>
-                <li *ngIf="userEmail.errors?.['pattern']">Incorrect email!</li>
-            </ul>
+            <div *ngIf="userForm.controls['userEmail'].invalid && userForm.controls['userEmail'].touched" class="error">
+                <span>{{validationMessagesEmail('userEmail')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Phone</span>
             <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
-            <ul *ngIf="userForm.controls['userPhone'].invalid" class="error">
-                <li *ngIf="userPhone.errors?.['required']">Phone is required!</li>
-                <li *ngIf="userPhone.errors?.['pattern']">The phone should only contain numbers!</li>
-            </ul>
+            <div *ngIf="userForm.controls['userPhone'].invalid && userForm.controls['userPhone'].touched" class="error">
+                <span>{{validationMessagesPhone('userPhone')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>City</span>
             <input class="k-textbox" placeholder="City" formControlName="city" />
-            <ul *ngIf="userForm.controls['city'].invalid" class="error">
-                <li *ngIf="city.errors?.['required']">City is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['city'].invalid && userForm.controls['city'].touched" class="error">
+                <span>{{validationMessages('city')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Street</span>
             <input class="k-textbox" placeholder="Street" formControlName="street" />
-            <ul *ngIf="userForm.controls['street'].invalid" class="error">
-                <li *ngIf="street.errors?.['required']">Street is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['street'].invalid && userForm.controls['street'].touched" class="error">
+                <span>{{validationMessages('street')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Building</span>
             <input class="k-textbox" placeholder="Building" formControlName="building" />
-            <ul *ngIf="userForm.controls['building'].invalid" class="error">
-                <li *ngIf="building.errors?.['required']">Building is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['building'].invalid && userForm.controls['building'].touched" class="error">
+                <span>{{validationMessages('building')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Zipcode</span>
             <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
-            <ul *ngIf="userForm.controls['zipcode'].invalid" class="error">
-                <li *ngIf="zipcode.errors?.['required']">Zipcode is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['zipcode'].invalid && userForm.controls['zipcode'].touched" class="error">
+                <span>{{validationMessages('zipcode')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Website</span>
             <input class="k-textbox" placeholder="Website" formControlName="website" />
-            <ul *ngIf="userForm.controls['website'].invalid" class="error">
-                <li *ngIf="website.errors?.['required']">Website is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['website'].invalid && userForm.controls['website'].touched" class="error">
+                <span>{{validationMessages('website')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Company name</span>
             <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
-            <ul *ngIf="userForm.controls['companyName'].invalid" class="error">
-                <li *ngIf="companyName.errors?.['required']">Company name is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['companyName'].invalid && userForm.controls['companyName'].touched" class="error">
+                <span>{{validationMessages('companyName')}}</span>
+            </div>
         </label>
         <label class="k-form-field">
             <span class="error">*</span><span>Company scope</span>
             <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
-            <ul *ngIf="userForm.controls['companyScope'].invalid" class="error">
-                <li *ngIf="companyScope.errors?.['required']">Company scope is required!</li>
-            </ul>
+            <div *ngIf="userForm.controls['companyScope'].invalid && userForm.controls['companyScope'].touched" class="error">
+                <span>{{validationMessages('companyScope')}}</span>
+            </div>
         </label>
     </fieldset>
 </form>

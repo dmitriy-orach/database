@@ -9,6 +9,7 @@ import { Post } from 'src/app/interfaces/post';
 })
 export class PostFormComponent implements OnInit {
   public postForm: FormGroup;
+  public fieldIsRequired: string = 'Field is required!';
 
   @Input() public title: string;
   @Input() public post: Post;
@@ -38,5 +39,13 @@ export class PostFormComponent implements OnInit {
 
   public get  postBody(): AbstractControl {
     return this.postForm.get('body') as AbstractControl;
+  }
+
+  public validationMessages(controlName: string): string {
+    if(this.postForm.get(controlName)?.errors?.['required']) {
+      return this.fieldIsRequired;
+    } else {
+      return '';
+    }
   }
 }

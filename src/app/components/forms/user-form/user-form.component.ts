@@ -9,6 +9,11 @@ import { User } from 'src/app/interfaces/user';
 })
 export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
+  public fieldIsRequiredText: string = 'Field is required!';
+  public patternForNamesText: string = 'Only letters!';
+  public maxLengthLettersText: string = 'The maximum number of characters allowed is 55!';
+  public patternForEmailText: string = 'Incorrect email!';
+  public patternForPhoneText: string = 'The phone should only contain numbers! The number must start with + and its total length must be 13 characters!';
 
   @Input() public usersLength: number;
   @Input() public user: User;
@@ -60,51 +65,35 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  public get firstName(): AbstractControl {
-    return this.userForm.get('firstName') as AbstractControl;
+  public validationMessages(controlName: string): string {
+    if(this.userForm.get(controlName)?.errors?.['required']) {
+      return this.fieldIsRequiredText;
+    } else if(this.userForm.get(controlName)?.errors?.['pattern']) {
+      return this.patternForNamesText;
+    } else if(this.userForm.get(controlName)?.errors?.['maxlength']) {
+      return this.maxLengthLettersText;
+    } else {
+      return '';
+    }
   }
 
-  public get lastName(): AbstractControl {
-    return this.userForm.get('lastName') as AbstractControl;
+  public validationMessagesEmail(controlName: string): string {
+    if(this.userForm.get(controlName)?.errors?.['required']) {
+      return this.fieldIsRequiredText;
+    } else if(this.userForm.get(controlName)?.errors?.['pattern'] || this.userForm.get(controlName)?.errors?.['email']) {
+      return this.patternForEmailText;
+    } else {
+      return '';
+    }
   }
 
-  public get nickName(): AbstractControl {
-    return this.userForm.get('nickName') as AbstractControl;
+  public validationMessagesPhone(controlName: string): string {
+    if(this.userForm.get(controlName)?.errors?.['required']) {
+      return this.fieldIsRequiredText;
+    } else if(this.userForm.get(controlName)?.errors?.['pattern']) {
+      return this.patternForPhoneText;
+    } else {
+      return '';
+    }
   }
-
-  public get userPhone(): AbstractControl {
-    return this.userForm.get('userPhone') as AbstractControl;
-  }
-
-  public get userEmail(): AbstractControl {
-    return this.userForm.get('userEmail') as AbstractControl;
-  } 
-
-  public get city(): AbstractControl {
-    return this.userForm.get('city') as AbstractControl;
-  }
-
-  public get street(): AbstractControl {
-    return this.userForm.get('street') as AbstractControl;
-  } 
-
-  public get building(): AbstractControl {
-    return this.userForm.get('building') as AbstractControl;
-  } 
-
-  public get zipcode(): AbstractControl {
-    return this.userForm.get('zipcode') as AbstractControl;
-  } 
-
-  public get website(): AbstractControl {
-    return this.userForm.get('website') as AbstractControl;
-  }
-
-  public get companyName(): AbstractControl {
-    return this.userForm.get('companyName') as AbstractControl;
-  }
-
-  public get companyScope(): AbstractControl {
-    return this.userForm.get('companyScope') as AbstractControl;
-  } 
 }

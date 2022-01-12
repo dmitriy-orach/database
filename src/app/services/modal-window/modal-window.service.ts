@@ -15,7 +15,6 @@ export class ModalWindowService {
 
   public close(): void {
     this.isModalOpened.next(false);
-    console.log(this.isModalOpened);
   }
 
   public getModalWindowStatus(): Observable<boolean> {
