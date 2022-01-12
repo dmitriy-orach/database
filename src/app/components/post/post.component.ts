@@ -23,7 +23,7 @@ export class PostComponent extends BaseComponent implements OnInit {
   
   constructor(
     private postsService: PostsService,
-    private  commentsService: CommentsService,
+    private commentsService: CommentsService,
     private modalWindowService: ModalWindowService
   ) {
     super();
@@ -36,7 +36,6 @@ export class PostComponent extends BaseComponent implements OnInit {
   public removePost(): void {
     this.postsService.removePost(this.post.id.toString()).pipe(
       takeUntil(this.destroyed),
-      take(1), 
       catchError(err => of(`Error: ${err}`))
     ).subscribe(
       data => {
@@ -50,7 +49,6 @@ export class PostComponent extends BaseComponent implements OnInit {
       this.closePostModal();
       this.postsService.getPost(this.post.id.toString()).pipe(
         takeUntil(this.destroyed),
-        take(1)
       ).subscribe(post => this.post = post);
   }
 

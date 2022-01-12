@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { catchError, of, take } from 'rxjs';
+import { catchError, of, takeUntil } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users/users.service';
+import { BaseComponent } from '../base/base.component';
 import { UserFormComponent } from '../forms/user-form/user-form.component';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserFormComponent } from '../forms/user-form/user-form.component';
   templateUrl: './user-modal-window.component.html',
   styleUrls: ['./user-modal-window.component.scss']
 })
-export class UserModalWindowComponent {
+export class UserModalWindowComponent extends BaseComponent {
   @ViewChild(UserFormComponent) public userForm: UserFormComponent;
 
   @Input() public usersLength: number;
@@ -21,7 +22,9 @@ export class UserModalWindowComponent {
   @Output() public updateUser = new EventEmitter;
   @Output() public closeModal = new EventEmitter;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {
+    super();
+  }
 
   public close(): void {
     this.closeModal.emit();
@@ -35,7 +38,7 @@ export class UserModalWindowComponent {
     switch(this.typeModalWindow) {
       case 'Add user': 
         this.usersService.postNewUser(userData).pipe(
-          take(1),
+          takeUntil(this.destroyed),
           catchError(err => of(`Error: ${err}`))
         ).subscribe(
           () => {
@@ -47,7 +50,7 @@ export class UserModalWindowComponent {
 
       case 'Edit user':
         this.usersService.editUser(this.user.id.toString(), userData).pipe(
-          take(1),
+          takeUntil(this.destroyed),
           catchError(err => of(`Error: ${err}`))
         ).subscribe(
           () => {
