@@ -20,6 +20,7 @@ import { PostFormComponent } from './components/forms/post-form/post-form.compon
 import { UserModalWindowComponent } from './components/user-modal-window/user-modal-window.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
 import { BaseComponent } from './components/base/base.component';
+import { UserMapper } from './mappers/user.mapper';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { BaseComponent } from './components/base/base.component';
     ReactiveFormsModule,
     ListViewModule
   ],
-  providers: [],
+  providers: [UserMapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

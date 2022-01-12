@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
+import { UserMapper } from './../../../mappers/user.mapper';
 
 @Component({
   selector: 'app-user-form',
@@ -20,7 +21,7 @@ export class UserFormComponent implements OnInit {
 
   @Output() public dataUser: EventEmitter<User> = new EventEmitter;
   
-  constructor() { }
+  constructor(private userMapper: UserMapper) { }
 
   public ngOnInit(): void {
     this.userForm = new FormGroup({
@@ -41,25 +42,7 @@ export class UserFormComponent implements OnInit {
 
   public submit(): void {
     if(this.userForm.valid) {
-      const user: User = {
-        id: this.user ? this.user.id : this.usersLength + 1,
-        firstName: this.userForm.value.firstName,
-        lastName: this.userForm.value.lastName,
-        username: this.userForm.value.nickName,
-        email: this.userForm.value.userEmail,
-        address: {
-          street: this.userForm.value.street,
-          building: this.userForm.value.building,
-          city: this.userForm.value.city,
-          zipcode: this.userForm.value.zipcode
-        }, 
-        phone: this.userForm.value.userPhone, 
-        website: this.userForm.value.website, 
-        company: {
-          name: this.userForm.value.companyName,
-          scope: this.userForm.value.companyScope
-        }
-      };
+      const user: User = this.userMapper.mapUser(this.userForm.value, this.user, this.usersLength);
       this.dataUser.emit(user);
       this.userForm.reset();
     }
