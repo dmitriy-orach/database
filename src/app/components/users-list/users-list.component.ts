@@ -12,7 +12,7 @@ import { UsersService } from '../../services/users/users.service'
 })
 export class UsersListComponent implements OnInit {
   public users$: Observable<User[]>;
-  public isOpenUserModal: boolean = false;
+  public isOpenUserModal: boolean;
 
   constructor(
     private usersService: UsersService,
@@ -22,6 +22,7 @@ export class UsersListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.users$ = this.usersService.getUsers();
+    this.getModalWindowStatus();
   }
 
   public updateUsers(): void {
@@ -36,10 +37,16 @@ export class UsersListComponent implements OnInit {
   }
 
   public openUserModal(): void {
-    this.isOpenUserModal = this.modalWindowService.open();
+    this.modalWindowService.open();
   }
 
   public closeUserModal(): void {
-    this.isOpenUserModal = this.modalWindowService.close();
+    this.modalWindowService.close();
+  }
+
+  private getModalWindowStatus(): void {
+    this.modalWindowService.getModalWindowStatus().subscribe(isModalOpened => {
+      this.isOpenUserModal = isModalOpened;
+    })
   }
 }

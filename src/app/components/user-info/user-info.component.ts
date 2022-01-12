@@ -6,7 +6,6 @@ import { UsersService } from '../../services/users/users.service'
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
-import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 
 @Component({
   selector: 'app-user-info',
@@ -14,7 +13,7 @@ import { ModalWindowService } from 'src/app/services/modal-window/modal-window.s
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  public user$: Observable<User>;
+  public user: User;
   public userPosts$: Observable<Post[]>;
   public isOpenUserModal: boolean = false;
   public isOpenPostModal: boolean = false;
@@ -24,13 +23,12 @@ export class UserInfoComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private location: Location,
     private usersService: UsersService,
-    private postsService: PostsService,
-    private modalWindowService: ModalWindowService
+    private postsService: PostsService
   ) { }
 
   public ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
-    this.user$ = this.usersService.getUser(this.userId);
+    this.usersService.getUser(this.userId).subscribe(user => this.user = user);
     this.userPosts$ = this.postsService.getUserPosts(this.userId);
   }
 
@@ -40,7 +38,7 @@ export class UserInfoComponent implements OnInit {
 
   public updateUser(): void {
     this.closeUserModal();
-    this.user$ = this.usersService.getUser(this.userId);
+    this.usersService.getUser(this.userId).subscribe(user => this.user = user);
   }
 
   public updatePosts(): void {
@@ -49,18 +47,18 @@ export class UserInfoComponent implements OnInit {
   }
 
   public openUserModal(): void {
-    this.isOpenUserModal = this.modalWindowService.open();
+    this.isOpenUserModal = !this.isOpenUserModal;
   }
 
   public closeUserModal(): void {
-    this.isOpenUserModal = this.modalWindowService.close();
+    this.isOpenUserModal = !this.isOpenUserModal;
   }
 
   public openPostModal(): void {
-    this.isOpenPostModal = this.modalWindowService.open();
+    this.isOpenPostModal = !this.isOpenPostModal;
   }
 
   public closePostModal(): void {
-    this.isOpenPostModal = this.modalWindowService.close();
+    this.isOpenPostModal = !this.isOpenPostModal;
   }
 }

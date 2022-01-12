@@ -31,6 +31,7 @@ export class PostComponent extends BaseComponent implements OnInit {
 
   public ngOnInit(): void {
     this.comments$ = this.commentsService.getCommentsOfUser(this.post.id);
+    this.getModalWindowStatus();
   }
 
   public removePost(): void {
@@ -57,10 +58,16 @@ export class PostComponent extends BaseComponent implements OnInit {
   }
 
   public openPostModal(): void {
-    this.isOpenPostModal = this.modalWindowService.open();
+    this.isOpenPostModal = !this.isOpenPostModal;
   }
 
   public closePostModal(): void {
-    this.isOpenPostModal = this.modalWindowService.close();
+    this.modalWindowService.close();
+  }
+
+  private getModalWindowStatus(): void {
+    this.modalWindowService.getModalWindowStatus().subscribe(isModalOpened => {
+      this.isOpenPostModal = isModalOpened;
+    })
   }
 }

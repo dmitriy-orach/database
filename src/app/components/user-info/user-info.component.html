@@ -1,4 +1,4 @@
-<div class="container" *ngIf="user$ | async as user">
+<div class="container" *ngIf="user; else not_found">
     <button kendoButton class="k-primary" (click)="goBack()">Back</button>
     <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">Edit user</button>
     <div class="user-info">
@@ -47,21 +47,26 @@
         </div>
     </div>
 
-    <app-user-modal-window
-        *ngIf="isOpenUserModal"
-        [title]="'Please edited in the user information'"
-        [user]="user"
-        [typeModalWindow]="'Edit user'"
-        (updateUser)="updateUser()"
-        (closeModal)="closeUserModal()"
-    ></app-user-modal-window>
-
-    <app-post-modal-window
-        *ngIf="isOpenPostModal"
-        [title]="'Please fill in the new post'" 
-        [userId]="user.id"
-        [typeModalWindow]="'Add post'"
-        (updatePosts)="updatePosts()"
-        (closeModal)="closePostModal()"
-    ></app-post-modal-window>
 </div>
+
+<ng-template #not_found>
+    <app-not-found></app-not-found>
+</ng-template>
+
+<app-user-modal-window
+    *ngIf="isOpenUserModal"
+    [title]="'Please edited in the user information'"
+    [user]="user"
+    [typeModalWindow]="'Edit user'"
+    (updateUser)="updateUser()"
+    (closeModal)="closeUserModal()"
+></app-user-modal-window>
+
+<app-post-modal-window
+    *ngIf="isOpenPostModal"
+    [title]="'Please fill in the new post'" 
+    [userId]="user.id"
+    [typeModalWindow]="'Add post'"
+    (updatePosts)="updatePosts()"
+    (closeModal)="closePostModal()"
+></app-post-modal-window>
