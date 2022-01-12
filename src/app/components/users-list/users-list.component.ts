@@ -28,7 +28,6 @@ export class UsersListComponent implements OnInit {
   }
 
   public updateUsers(): void {
-    this.closeUserModal();
     this.users$ = this.usersService.getUsers();
   }
 
@@ -40,10 +39,6 @@ export class UsersListComponent implements OnInit {
 
   public openUserModal(): void {
     this.modalWindowService.open();
-  }
-
-  public closeUserModal(): void {
-    this.modalWindowService.close();
   }
 
   public cellClickHandler(cellData: CellClickEvent) {

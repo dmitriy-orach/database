@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { catchError, of, takeUntil } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
+import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { BaseComponent } from '../base/base.component';
 import { UserFormComponent } from '../forms/user-form/user-form.component';
@@ -20,14 +21,16 @@ export class UserModalWindowComponent extends BaseComponent {
 
   @Output() public updateUsers = new EventEmitter;
   @Output() public updateUser = new EventEmitter;
-  @Output() public closeModal = new EventEmitter;
 
-  constructor(private usersService: UsersService) {
+  constructor(
+    private usersService: UsersService,
+    private modalWindowService: ModalWindowService
+  ) {
     super();
   }
 
   public close(): void {
-    this.closeModal.emit();
+    this.modalWindowService.close();
   }
 
   public submit(): void {
