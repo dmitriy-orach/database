@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users/users.service'
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
+import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 
 @Component({
   selector: 'app-user-info',
@@ -23,13 +24,15 @@ export class UserInfoComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private location: Location,
     private usersService: UsersService,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private modalWindowService: ModalWindowService
   ) { }
 
   public ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
     this.usersService.getUser(this.userId).subscribe(user => this.user = user);
     this.userPosts$ = this.postsService.getUserPosts(this.userId);
+    this.modalWindowService.getModalWindowStatus().subscribe(isOpen => this.isOpenUserModal = isOpen);
   }
 
   public goBack(): void {
@@ -47,18 +50,18 @@ export class UserInfoComponent implements OnInit {
   }
 
   public openUserModal(): void {
-    this.isOpenUserModal = !this.isOpenUserModal;
+    this.isOpenUserModal = true;
   }
 
   public closeUserModal(): void {
-    this.isOpenUserModal = !this.isOpenUserModal;
+    this.isOpenUserModal = false;
   }
 
   public openPostModal(): void {
-    this.isOpenPostModal = !this.isOpenPostModal;
+    this.isOpenPostModal = true;
   }
 
   public closePostModal(): void {
-    this.isOpenPostModal = !this.isOpenPostModal;
+    this.isOpenPostModal = false;
   }
 }

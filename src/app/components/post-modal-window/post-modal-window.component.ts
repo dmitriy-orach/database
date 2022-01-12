@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { catchError, of, take } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
+import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { PostFormComponent } from '../forms/post-form/post-form.component';
 
@@ -22,7 +23,10 @@ export class PostModalWindowComponent implements OnInit {
   @Output() public updatePosts = new EventEmitter;
   @Output() public closeModal = new EventEmitter;
 
-  constructor(private postsService: PostsService) { }
+  constructor(
+    private postsService: PostsService,
+    private modalWindowService: ModalWindowService
+  ) { }
 
   public ngOnInit(): void {
     this.postsService.getPosts().pipe(take(1)).subscribe((posts: Post[]) => this.postsLength = posts.length);
@@ -52,7 +56,7 @@ export class PostModalWindowComponent implements OnInit {
         ).subscribe(
           () => {
             this.updatePosts.emit();
-            this.close();
+            this.modalWindowService.close();
           }
         );
         break;
@@ -64,7 +68,7 @@ export class PostModalWindowComponent implements OnInit {
         ).subscribe(
           () => {
             this.updatePosts.emit();
-            this.close();
+            this.modalWindowService.close();
           }
         );
         break;
