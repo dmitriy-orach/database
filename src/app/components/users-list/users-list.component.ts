@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CellClickEvent } from '@progress/kendo-angular-grid';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
@@ -13,6 +14,7 @@ import { UsersService } from '../../services/users/users.service'
 export class UsersListComponent implements OnInit {
   public users$: Observable<User[]>;
   public isOpenUserModal: boolean;
+  public user: User;
 
   constructor(
     private usersService: UsersService,
@@ -30,9 +32,9 @@ export class UsersListComponent implements OnInit {
     this.users$ = this.usersService.getUsers();
   }
 
-  public dblClick(user: User): void {
+  public dblClick(): void {
     this.router.navigate(
-      ['/user-info', user.id]
+      ['/user-info', this.user.id]
     )
   }
 
@@ -42,6 +44,10 @@ export class UsersListComponent implements OnInit {
 
   public closeUserModal(): void {
     this.modalWindowService.close();
+  }
+
+  public cellClickHandler(cellData: CellClickEvent) {
+    this.user = cellData.dataItem;
   }
 
   private getModalWindowStatus(): void {
