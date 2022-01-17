@@ -21,6 +21,8 @@ import { UserModalWindowComponent } from './components/user-modal-window/user-mo
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
 import { BaseComponent } from './components/base/base.component';
 import { UserMapper } from './mappers/user.mapper';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { UserMapper } from './mappers/user.mapper';
     DialogsModule,
     FormsModule,
     ReactiveFormsModule,
-    ListViewModule
+    ListViewModule,
+    InputsModule,
+    LabelModule
   ],
   providers: [UserMapper],
   bootstrap: [AppComponent]

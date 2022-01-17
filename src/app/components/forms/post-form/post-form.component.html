@@ -1,20 +1,21 @@
 <form  class="k-form" [formGroup]="postForm">
     <fieldset>
-        <legend>{{title}}</legend>
-
-        <label class="k-form-field">
-            <span class="error">*</span><span>Post title</span>
-            <input class="k-textbox" placeholder="Post title" formControlName="title" />
-            <div *ngIf="postForm.controls['title'].invalid && postForm.controls['title'].touched" class="error">
-                <span>{{validationMessages('title')}}</span>
+        <legend>Fill in the fields</legend>
+        <kendo-formfield>
+            <kendo-label [for]="title" text="Post title"></kendo-label>
+            <input #title class="k-textbox" formControlName="title" />
+            <kendo-formhint>Post title</kendo-formhint>
+            <div *ngIf="postForm.controls['title'].invalid && postForm.controls['title'].touched">
+                <kendo-formerror>{{validationMessages('title')}}</kendo-formerror>
             </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Post text</span>
-            <input class="k-textbox" name="body" placeholder="Post text" formControlName="body" />
-            <div *ngIf="postForm.controls['body'].invalid && postForm.controls['body'].touched" class="error">
-                <span>{{validationMessages('body')}}</span>
+        </kendo-formfield>
+        <kendo-formfield>
+            <kendo-label [for]="body" text="Post text"></kendo-label>
+            <input #body class="k-textbox" name="body" formControlName="body" />
+            <kendo-formhint>Post text</kendo-formhint>
+            <div *ngIf="postForm.controls['body'].invalid && postForm.controls['body'].touched">
+                <kendo-formerror>{{validationMessages('body')}}</kendo-formerror>
             </div>
-        </label>
+        </kendo-formfield>
     </fieldset>
 </form>

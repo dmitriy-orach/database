@@ -11,7 +11,6 @@ export class PostFormComponent implements OnInit {
   public postForm: FormGroup;
   public fieldIsRequired: string = 'Field is required!';
 
-  @Input() public title: string;
   @Input() public post: Post;
 
   @Output() public dataPost: EventEmitter<{title: string, body: string}> = new EventEmitter;

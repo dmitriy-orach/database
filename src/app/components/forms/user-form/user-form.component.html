@@ -1,94 +1,106 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
-
-        <label class="k-form-field">
-            <span class="error">*</span><span>First name</span>
-            <input class="k-textbox" placeholder="First name" formControlName="firstName" />
-            <div *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched" class="error">
-                <span>{{validationMessages('firstName')}}</span>
+        <kendo-formfield>
+            <kendo-label [for]="firstName" text="First name"></kendo-label>
+                <input #firstName class="k-textbox" formControlName="firstName" />
+                <kendo-formhint>First name</kendo-formhint>
+                <div *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched">
+                    <kendo-formerror>{{validationMessages('firstName')}}</kendo-formerror>
+                </div>
+        </kendo-formfield>
+        <kendo-formfield>
+            <kendo-label [for]="lastName" text="Last name"></kendo-label>
+            <input #lastName class="k-textbox" formControlName="lastName" />
+            <kendo-formhint>Last name</kendo-formhint>
+            <div *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched">
+                <kendo-formerror>{{validationMessages('lastName')}}</kendo-formerror>
             </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Last name</span>
-            <input class="k-textbox" placeholder="Last name" formControlName="lastName" />
-            <div *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched" class="error">
-                <span>{{validationMessages('lastName')}}</span>
+        </kendo-formfield>
+        <kendo-formfield>
+            <kendo-label [for]="nickName" text="Nickname"></kendo-label>
+                <input #nickName class="k-textbox" formControlName="nickName" />
+                <kendo-formhint>Nickname</kendo-formhint>
+                <div *ngIf="userForm.controls['nickName'].invalid && userForm.controls['nickName'].touched">
+                    <kendo-formerror>{{validationMessages('nickName')}}</kendo-formerror>
+                </div>
+        </kendo-formfield>
+        <kendo-formfield>
+            <kendo-label [for]="userEmail" text="Email"></kendo-label>
+            <input #userEmail class="k-textbox" formControlName="userEmail" />
+            <kendo-formhint>Email</kendo-formhint>
+            <div *ngIf="userForm.controls['userEmail'].invalid && userForm.controls['userEmail'].touched">
+                <kendo-formerror>{{validationMessagesEmail('userEmail')}}</kendo-formerror>
             </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Nickname</span>
-            <input class="k-textbox" placeholder="Nickname" formControlName="nickName" />
-            <div *ngIf="userForm.controls['nickName'].invalid && userForm.controls['nickName'].touched" class="error">
-                <span>{{validationMessages('nickName')}}</span>
+        </kendo-formfield>
+        <kendo-formfield>
+            <kendo-label [for]="userPhone" text="Phone"></kendo-label>
+            <input #userPhone class="k-textbox" formControlName="userPhone" />
+            <kendo-formhint>Phone</kendo-formhint>
+            <div *ngIf="userForm.controls['userPhone'].invalid && userForm.controls['userPhone'].touched">
+                <kendo-formerror>{{validationMessagesPhone('userPhone')}}</kendo-formerror>
             </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Email</span>
-            <input class="k-textbox" placeholder="Email" formControlName="userEmail" />
-            <div *ngIf="userForm.controls['userEmail'].invalid && userForm.controls['userEmail'].touched" class="error">
-                <span>{{validationMessagesEmail('userEmail')}}</span>
-            </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Phone</span>
-            <input class="k-textbox" placeholder="Phone" formControlName="userPhone" />
-            <div *ngIf="userForm.controls['userPhone'].invalid && userForm.controls['userPhone'].touched" class="error">
-                <span>{{validationMessagesPhone('userPhone')}}</span>
-            </div>
-        </label>
+        </kendo-formfield>
         <div formGroupName="address">
-            <label class="k-form-field">
-                <span class="error">*</span><span>City</span>
-                <input class="k-textbox" placeholder="City" formControlName="city" />
-                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            <kendo-formfield>
+                <kendo-label [for]="city" text="City"></kendo-label>
+                <input #city class="k-textbox" formControlName="city" />
+                <kendo-formhint>City</kendo-formhint>
+                <div *ngIf="userForm.controls['address'].get('city')?.errors?.['required'] && userForm.controls['address'].get('city')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
-            <label class="k-form-field">
-                <span class="error">*</span><span>Street</span>
-                <input class="k-textbox" placeholder="Street" formControlName="street" />
-                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            </kendo-formfield>
+            <kendo-formfield>
+                <kendo-label [for]="street" text="Street"></kendo-label>
+                <input #street class="k-textbox" formControlName="street" />
+                <kendo-formhint>Street</kendo-formhint>
+                <div *ngIf="userForm.controls['address'].get('street')?.errors?.['required'] && userForm.controls['address'].get('street')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
-            <label class="k-form-field">
-                <span class="error">*</span><span>Building</span>
-                <input class="k-textbox" placeholder="Building" formControlName="building" />
-                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            </kendo-formfield>
+            <kendo-formfield>
+                <kendo-label [for]="building" text="Building"></kendo-label>
+                <input #building class="k-textbox" formControlName="building" />
+                <kendo-formhint>Building</kendo-formhint>
+                <div *ngIf="userForm.controls['address'].get('building')?.errors?.['required'] && userForm.controls['address'].get('building')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
-            <label class="k-form-field">
-                <span class="error">*</span><span>Zipcode</span>
-                <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
-                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            </kendo-formfield>
+            <kendo-formfield>
+                <kendo-label [for]="zipcode" text="Zipcode"></kendo-label>
+                <input #zipcode class="k-textbox" formControlName="zipcode" />
+                <kendo-formhint>Zipcode</kendo-formhint>
+                <div *ngIf="userForm.controls['address'].get('zipcode')?.errors?.['required'] && userForm.controls['address'].get('zipcode')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
+            </kendo-formfield>
         </div>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Website</span>
-            <input class="k-textbox" placeholder="Website" formControlName="website" />
-            <div *ngIf="userForm.controls['website'].invalid && userForm.controls['website'].touched" class="error">
-                <span>{{validationMessages('website')}}</span>
-            </div>
-        </label>
+        <kendo-formfield>
+            <kendo-label [for]="website" text="Website"></kendo-label>
+                <input #website class="k-textbox" formControlName="website" />
+                <kendo-formhint>Website</kendo-formhint>
+                <div *ngIf="userForm.controls['website'].invalid && userForm.controls['website'].touched">
+                    <kendo-formerror>{{validationMessages('website')}}</kendo-formerror>
+                </div>
+            
+        </kendo-formfield>
         <div formGroupName="company">
-            <label class="k-form-field">
-                <span class="error">*</span><span>Company name</span>
-                <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
-                <div *ngIf="userForm.controls['company'].invalid && userForm.controls['company'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            <kendo-formfield>
+                <kendo-label [for]="companyName" text="Company name"></kendo-label>
+                <input #companyName class="k-textbox" formControlName="companyName" />
+                <kendo-formhint>Company name</kendo-formhint>
+                <div *ngIf="userForm.controls['company'].get('companyName')?.errors?.['required'] && userForm.controls['company'].get('companyName')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
-            <label class="k-form-field">
-                <span class="error">*</span><span>Company scope</span>
-                <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
-                <div *ngIf="userForm.controls['company'].invalid && userForm.controls['company'].touched" class="error">
-                    <span>{{fieldIsRequiredText}}</span>
+            </kendo-formfield>
+            <kendo-formfield>
+                <kendo-label [for]="companyScope" text="Company scope"></kendo-label>
+                <input #companyScope kendoTextBox class="k-textbox" formControlName="companyScope" />
+                <kendo-formhint>Company scope</kendo-formhint>
+                <div *ngIf="userForm.controls['company'].get('companyScope')?.errors?.['required'] && userForm.controls['company'].get('companyScope')?.touched">
+                    <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
                 </div>
-            </label>
+            </kendo-formfield>
         </div>
     </fieldset>
 </form>
