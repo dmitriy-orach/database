@@ -32,7 +32,8 @@ export class UserInfoComponent implements OnInit {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
     this.usersService.getUser(this.userId).subscribe(user => this.user = user);
     this.userPosts$ = this.postsService.getUserPosts(this.userId);
-    this.modalWindowService.getModalWindowStatus().subscribe(isOpen => this.isOpenUserModal = isOpen);
+    this.getUseModalWindowStatus();
+    this.getPostModalWindowStatus();
   }
 
   public goBack(): void {
@@ -50,18 +51,30 @@ export class UserInfoComponent implements OnInit {
   }
 
   public openUserModal(): void {
-    this.isOpenUserModal = true;
+    this.isOpenUserModal = !this.isOpenPostModal;
   }
 
   public closeUserModal(): void {
-    this.isOpenUserModal = false;
+    this.modalWindowService.close();
   }
 
   public openPostModal(): void {
-    this.isOpenPostModal = true;
+    this.isOpenPostModal = !this.isOpenPostModal;
   }
 
   public closePostModal(): void {
-    this.isOpenPostModal = false;
+    this.modalWindowService.close();
+  }
+
+  public getPostModalWindowStatus(): void {
+    this.modalWindowService.getModalWindowStatus().subscribe(isModalOpened => {
+      this.isOpenPostModal = isModalOpened;
+    })
+  }
+
+  public getUseModalWindowStatus(): void {
+    this.modalWindowService.getModalWindowStatus().subscribe(isModalOpened => {
+      this.isOpenUserModal = isModalOpened;
+    })
   }
 }

@@ -21,7 +21,6 @@ export class PostModalWindowComponent implements OnInit {
   @Input() public typeModalWindow: string;
 
   @Output() public updatePosts = new EventEmitter;
-  @Output() public closeModal = new EventEmitter;
 
   constructor(
     private postsService: PostsService,
@@ -33,7 +32,7 @@ export class PostModalWindowComponent implements OnInit {
   }
 
   public close(): void {
-    this.closeModal.emit();
+    this.modalWindowService.close();
   }
 
   public submit(): void {
@@ -56,7 +55,7 @@ export class PostModalWindowComponent implements OnInit {
         ).subscribe(
           () => {
             this.updatePosts.emit();
-            this.modalWindowService.close();
+            this.close();
           }
         );
         break;
@@ -68,7 +67,7 @@ export class PostModalWindowComponent implements OnInit {
         ).subscribe(
           () => {
             this.updatePosts.emit();
-            this.modalWindowService.close();
+            this.close();
           }
         );
         break;
