@@ -37,34 +37,36 @@
                 <span>{{validationMessagesPhone('userPhone')}}</span>
             </div>
         </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>City</span>
-            <input class="k-textbox" placeholder="City" formControlName="city" />
-            <div *ngIf="userForm.controls['city'].invalid && userForm.controls['city'].touched" class="error">
-                <span>{{validationMessages('city')}}</span>
-            </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Street</span>
-            <input class="k-textbox" placeholder="Street" formControlName="street" />
-            <div *ngIf="userForm.controls['street'].invalid && userForm.controls['street'].touched" class="error">
-                <span>{{validationMessages('street')}}</span>
-            </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Building</span>
-            <input class="k-textbox" placeholder="Building" formControlName="building" />
-            <div *ngIf="userForm.controls['building'].invalid && userForm.controls['building'].touched" class="error">
-                <span>{{validationMessages('building')}}</span>
-            </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Zipcode</span>
-            <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
-            <div *ngIf="userForm.controls['zipcode'].invalid && userForm.controls['zipcode'].touched" class="error">
-                <span>{{validationMessages('zipcode')}}</span>
-            </div>
-        </label>
+        <div formGroupName="address">
+            <label class="k-form-field">
+                <span class="error">*</span><span>City</span>
+                <input class="k-textbox" placeholder="City" formControlName="city" />
+                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+            <label class="k-form-field">
+                <span class="error">*</span><span>Street</span>
+                <input class="k-textbox" placeholder="Street" formControlName="street" />
+                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+            <label class="k-form-field">
+                <span class="error">*</span><span>Building</span>
+                <input class="k-textbox" placeholder="Building" formControlName="building" />
+                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+            <label class="k-form-field">
+                <span class="error">*</span><span>Zipcode</span>
+                <input class="k-textbox" placeholder="Zipcode" formControlName="zipcode" />
+                <div *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+        </div>
         <label class="k-form-field">
             <span class="error">*</span><span>Website</span>
             <input class="k-textbox" placeholder="Website" formControlName="website" />
@@ -72,19 +74,21 @@
                 <span>{{validationMessages('website')}}</span>
             </div>
         </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Company name</span>
-            <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
-            <div *ngIf="userForm.controls['companyName'].invalid && userForm.controls['companyName'].touched" class="error">
-                <span>{{validationMessages('companyName')}}</span>
-            </div>
-        </label>
-        <label class="k-form-field">
-            <span class="error">*</span><span>Company scope</span>
-            <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
-            <div *ngIf="userForm.controls['companyScope'].invalid && userForm.controls['companyScope'].touched" class="error">
-                <span>{{validationMessages('companyScope')}}</span>
-            </div>
-        </label>
+        <div formGroupName="company">
+            <label class="k-form-field">
+                <span class="error">*</span><span>Company name</span>
+                <input class="k-textbox" placeholder="Company name" formControlName="companyName" />
+                <div *ngIf="userForm.controls['company'].invalid && userForm.controls['company'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+            <label class="k-form-field">
+                <span class="error">*</span><span>Company scope</span>
+                <input class="k-textbox" placeholder="Company scope" formControlName="companyScope" />
+                <div *ngIf="userForm.controls['company'].invalid && userForm.controls['company'].touched" class="error">
+                    <span>{{fieldIsRequiredText}}</span>
+                </div>
+            </label>
+        </div>
     </fieldset>
 </form>
