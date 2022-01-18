@@ -57,7 +57,6 @@
     *ngIf="isOpenUserModal"
     [title]="'Please edited in the user information'"
     [user]="user"
-    [typeModalWindow]="'Edit user'"
     (updateUser)="updateUser()"
 ></app-user-modal-window>
 
@@ -65,6 +64,5 @@
     *ngIf="isOpenPostModal"
     [title]="'Please fill in the new post'" 
     [userId]="user.id"
-    [typeModalWindow]="'Add post'"
     (updatePosts)="updatePosts()"
 ></app-post-modal-window>

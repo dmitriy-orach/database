@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
-import { UserMapper } from './../../../mappers/user.mapper';
 
 @Component({
   selector: 'app-user-form',
@@ -16,12 +15,7 @@ export class UserFormComponent implements OnInit {
   public patternForEmailText: string = 'Incorrect email!';
   public patternForPhoneText: string = 'The phone should only contain numbers! The number must start with + and its total length must be 13 characters!';
 
-  @Input() public usersLength: number;
   @Input() public user: User;
-
-  @Output() public dataUser: EventEmitter<User> = new EventEmitter;
-  
-  constructor(private userMapper: UserMapper) { }
 
   public ngOnInit(): void {
     this.userForm = new FormGroup({
@@ -42,14 +36,6 @@ export class UserFormComponent implements OnInit {
         companyName: new FormControl(this.user?.company.scope ?? '', Validators.required)
       })
     });
-  }
-
-  public submit(): void {
-    if(this.userForm.valid) {
-      const user: User = this.userMapper.mapUser(this.userForm.value, this.user, this.usersLength);
-      this.dataUser.emit(user);
-      this.userForm.reset();
-    }
   }
 
   public validationMessages(controlName: string): string {

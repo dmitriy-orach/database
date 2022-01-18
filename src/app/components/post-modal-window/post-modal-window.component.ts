@@ -13,12 +13,11 @@ import { PostFormComponent } from '../forms/post-form/post-form.component';
 export class PostModalWindowComponent implements OnInit {
   public postsLength: number;
 
-  @ViewChild(PostFormComponent) public postForm: PostFormComponent;
+  @ViewChild(PostFormComponent) public postFormComponent: PostFormComponent;
   
   @Input() public title: string;
   @Input() public userId: number;
   @Input() public post: Post;
-  @Input() public typeModalWindow: string;
 
   @Output() public updatePosts = new EventEmitter;
 
@@ -28,7 +27,7 @@ export class PostModalWindowComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.postsService.getPosts().pipe(take(1)).subscribe((posts: Post[]) => this.postsLength = posts.length);
+    !this.post ? this.postsService.getPosts().pipe(take(1)).subscribe((posts: Post[]) => this.postsLength = posts.length) : null;
   }
 
   public close(): void {
@@ -36,41 +35,39 @@ export class PostModalWindowComponent implements OnInit {
   }
 
   public submit(): void {
-    this.postForm.submit();
-  }
-
-  public savePost(dataPost: { title: string, body: string }): void {
-    const post: Post = {
-      id: this.post ? this.post.id : this.postsLength + 1,
-      userId: this.userId,
-      title: dataPost.title,
-      body: dataPost.body
-    };
-
-    switch(this.typeModalWindow) {
-      case 'Add post':
-        this.postsService.postNewPost(post).pipe(
-          take(1),
-          catchError(err => of(`Error: ${err}`))
-        ).subscribe(
-          () => {
-            this.updatePosts.emit();
-            this.close();
-          }
-        );
-        break;
-
-      case 'Edit post':
+    if(this.postFormComponent.postForm.valid) {
+      const post: Post = {
+        id: this.post ? this.post.id : this.postsLength + 1,
+        userId: this.userId,
+        title: this.postFormComponent.postForm.value.title,
+        body: this.postFormComponent.postForm.value.body
+      };
+  
+      if(this.post) {
         this.postsService.editPost(this.post.id.toString(), post).pipe(
           take(1), 
           catchError(err => of(`Error: ${err}`))
         ).subscribe(
           () => {
-            this.updatePosts.emit();
-            this.close();
+            this.closeModalMechanism();
           }
         );
-        break;
+      } else {
+        this.postsService.postNewPost(post).pipe(
+          take(1),
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
+          () => {
+            this.closeModalMechanism();
+          }
+        );
+      }
     }
+  }
+
+  private closeModalMechanism(): void {
+    this.updatePosts.emit();
+    this.postFormComponent.postForm.reset();
+    this.close();
   }
 }

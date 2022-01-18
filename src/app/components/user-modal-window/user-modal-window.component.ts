@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { catchError, of, takeUntil } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
+import { UserMapper } from 'src/app/mappers/user.mapper';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { BaseComponent } from '../base/base.component';
@@ -12,19 +13,19 @@ import { UserFormComponent } from '../forms/user-form/user-form.component';
   styleUrls: ['./user-modal-window.component.scss']
 })
 export class UserModalWindowComponent extends BaseComponent {
-  @ViewChild(UserFormComponent) public userForm: UserFormComponent;
+  @ViewChild(UserFormComponent) public userFormComponent: UserFormComponent;
 
   @Input() public usersLength: number;
   @Input() public title: string;
   @Input() public user: User;
-  @Input() public typeModalWindow: string;
 
   @Output() public updateUsers = new EventEmitter;
   @Output() public updateUser = new EventEmitter;
 
   constructor(
     private usersService: UsersService,
-    private modalWindowService: ModalWindowService
+    private modalWindowService: ModalWindowService,
+    private userMapper: UserMapper
   ) {
     super();
   }
@@ -34,34 +35,33 @@ export class UserModalWindowComponent extends BaseComponent {
   }
 
   public submit(): void {
-    this.userForm.submit();
+    if(this.userFormComponent.userForm.valid) {
+      const user: User = this.userMapper.mapUser(this.userFormComponent.userForm.value, this.user, this.usersLength);
+      if(this.user) {
+        this.usersService.editUser(this.user.id.toString(), user).pipe(
+          takeUntil(this.destroyed),
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
+          () => {
+            this.closeModalMechanism();
+          }
+        );
+      } else {
+        this.usersService.postNewUser(user).pipe(
+          takeUntil(this.destroyed),
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
+          () => {
+            this.closeModalMechanism();
+          }
+        );
+      }
+    }
   }
 
-  public postUser(userData: User): void {
-    switch(this.typeModalWindow) {
-      case 'Add user': 
-        this.usersService.postNewUser(userData).pipe(
-          takeUntil(this.destroyed),
-          catchError(err => of(`Error: ${err}`))
-        ).subscribe(
-          () => {
-            this.updateUsers.emit();
-            this.close();
-          }
-        );
-        break;
-
-      case 'Edit user':
-        this.usersService.editUser(this.user.id.toString(), userData).pipe(
-          takeUntil(this.destroyed),
-          catchError(err => of(`Error: ${err}`))
-        ).subscribe(
-          () => {
-            this.updateUser.emit();
-            this.close();
-          }
-        );
-        break;
-    }
+  private closeModalMechanism(): void {
+    this.user? this.updateUser.emit() : this.updateUsers.emit();
+    this.userFormComponent.userForm.reset();
+    this.close();
   }
 }

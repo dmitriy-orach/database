@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/interfaces/post';
 
@@ -13,21 +13,11 @@ export class PostFormComponent implements OnInit {
 
   @Input() public post: Post;
 
-  @Output() public dataPost: EventEmitter<{title: string, body: string}> = new EventEmitter;
-
   public ngOnInit(): void {
     this.postForm = new FormGroup({
-      "title": new FormControl(this.post?.title ?? '', Validators.required),
-      "body": new FormControl(this.post?.body ?? '', Validators.required)
+      title: new FormControl(this.post?.title ?? '', Validators.required),
+      body: new FormControl(this.post?.body ?? '', Validators.required)
     });
-  }
-
-  public submit(): void {
-    if(this.postForm.valid) {
-      const post = this.postForm.value;
-      this.dataPost.emit(post);
-      this.postForm.reset();
-    }
   }
 
   public validationMessages(controlName: string): string {
