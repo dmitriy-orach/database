@@ -5,17 +5,13 @@
             <kendo-label [for]="title" text="Post title"></kendo-label>
             <input #title class="k-textbox" formControlName="title" />
             <kendo-formhint>Post title</kendo-formhint>
-            <div *ngIf="postForm.controls['title'].invalid && postForm.controls['title'].touched">
-                <kendo-formerror>{{validationMessages('title')}}</kendo-formerror>
-            </div>
+            <kendo-formerror>{{validationMessages('title')}}</kendo-formerror>
         </kendo-formfield>
         <kendo-formfield>
             <kendo-label [for]="body" text="Post text"></kendo-label>
             <input #body class="k-textbox" name="body" formControlName="body" />
             <kendo-formhint>Post text</kendo-formhint>
-            <div *ngIf="postForm.controls['body'].invalid && postForm.controls['body'].touched">
-                <kendo-formerror>{{validationMessages('body')}}</kendo-formerror>
-            </div>
+            <kendo-formerror>{{validationMessages('body')}}</kendo-formerror>
         </kendo-formfield>
     </fieldset>
 </form>
