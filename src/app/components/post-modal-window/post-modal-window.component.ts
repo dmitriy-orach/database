@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { take } from 'rxjs';
+import { catchError, of, take } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
@@ -39,7 +39,38 @@ export class PostModalWindowComponent implements OnInit {
     this.postForm.submit();
   }
 
-  public refreshPosts(): void {
-    this.updatePosts.emit();
+  public savePost(dataPost: { title: string, body: string }): void {
+    const post: Post = {
+      id: this.post ? this.post.id : this.postsLength + 1,
+      userId: this.userId,
+      title: dataPost.title,
+      body: dataPost.body
+    };
+
+    switch(this.typeModalWindow) {
+      case 'Add post':
+        this.postsService.postNewPost(post).pipe(
+          take(1),
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
+          () => {
+            this.updatePosts.emit();
+            this.close();
+          }
+        );
+        break;
+
+      case 'Edit post':
+        this.postsService.editPost(this.post.id.toString(), post).pipe(
+          take(1), 
+          catchError(err => of(`Error: ${err}`))
+        ).subscribe(
+          () => {
+            this.updatePosts.emit();
+            this.close();
+          }
+        );
+        break;
+    }
   }
 }
