@@ -5,7 +5,9 @@
 >
     <app-post-form 
         [post]="post"
-        (dataPost)="savePost($event)"
+        [userId]="userId"
+        [typeModalWindow]="typeModalWindow"
+        (updatePosts)="refreshPosts()"
     ></app-post-form>
     <div class="k-actions k-actions-end">
         <button type="button" class="k-button" (click)="close()">
