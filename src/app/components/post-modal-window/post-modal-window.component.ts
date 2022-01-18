@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { catchError, of, take } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
+import { PostMapper } from 'src/app/mappers/post.mapper';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { PostFormComponent } from '../forms/post-form/post-form.component';
@@ -23,7 +24,8 @@ export class PostModalWindowComponent implements OnInit {
 
   constructor(
     private postsService: PostsService,
-    private modalWindowService: ModalWindowService
+    private modalWindowService: ModalWindowService,
+    private postMapper: PostMapper
   ) { }
 
   public ngOnInit(): void {
@@ -36,12 +38,7 @@ export class PostModalWindowComponent implements OnInit {
 
   public submit(): void {
     if(this.postFormComponent.postForm.valid) {
-      const post: Post = {
-        id: this.post ? this.post.id : this.postsLength + 1,
-        userId: this.userId,
-        title: this.postFormComponent.postForm.value.title,
-        body: this.postFormComponent.postForm.value.body
-      };
+      const post: Post = this.postMapper.mapPost(this.postFormComponent.postForm.value, this.post, this.userId, this.postsLength);
   
       if(this.post) {
         this.postsService.editPost(this.post.id.toString(), post).pipe(

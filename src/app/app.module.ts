@@ -23,6 +23,7 @@ import { BaseComponent } from './components/base/base.component';
 import { UserMapper } from './mappers/user.mapper';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { PostMapper } from './mappers/post.mapper';
 
 
 @NgModule({
@@ -53,7 +54,10 @@ import { LabelModule } from '@progress/kendo-angular-label';
     InputsModule,
     LabelModule
   ],
-  providers: [UserMapper],
+  providers: [
+    UserMapper, 
+    PostMapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
