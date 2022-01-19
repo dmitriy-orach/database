@@ -9,7 +9,6 @@ import { Post } from 'src/app/interfaces/post';
 })
 export class PostFormComponent implements OnInit {
   public postForm: FormGroup;
-  public fieldIsRequired: string = 'Field is required!';
 
   @Input() public post: Post;
 
@@ -18,13 +17,5 @@ export class PostFormComponent implements OnInit {
       title: new FormControl(this.post?.title ?? '', Validators.required),
       body: new FormControl(this.post?.body ?? '', Validators.required)
     });
-  }
-
-  public validationMessages(controlName: string): string {
-    if(this.postForm.get(controlName)?.errors?.['required']) {
-      return this.fieldIsRequired;
-    } else {
-      return '';
-    }
   }
 }

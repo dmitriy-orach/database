@@ -1,0 +1,8 @@
+<kendo-formfield [formGroup]="form">
+    <kendo-label [for]="formControlName" text="{{labelText}}"></kendo-label>
+    <input #{{formControl}} class="k-textbox" formControlName="{{formControlName}}" />
+    <kendo-formhint>{{labelText}}</kendo-formhint>
+    <kendo-formerror>
+        {{formControlName == 'userEmail' ? validationMessagesEmail(formControlName) : formControlName == 'userPhone' ? validationMessagesPhone(formControlName) : validationMessages(formControlName)}}
+    </kendo-formerror>
+</kendo-formfield>

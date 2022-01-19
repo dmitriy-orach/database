@@ -1,17 +1,7 @@
 <form  class="k-form" [formGroup]="postForm">
     <fieldset>
         <legend>Fill in the fields</legend>
-        <kendo-formfield>
-            <kendo-label [for]="title" text="Post title"></kendo-label>
-            <input #title class="k-textbox" formControlName="title" />
-            <kendo-formhint>Post title</kendo-formhint>
-            <kendo-formerror>{{validationMessages('title')}}</kendo-formerror>
-        </kendo-formfield>
-        <kendo-formfield>
-            <kendo-label [for]="body" text="Post text"></kendo-label>
-            <input #body class="k-textbox" name="body" formControlName="body" />
-            <kendo-formhint>Post text</kendo-formhint>
-            <kendo-formerror>{{validationMessages('body')}}</kendo-formerror>
-        </kendo-formfield>
+        <app-input [form]="postForm" [formControlName]="'title'" [labelText]="'Post title'"></app-input>
+        <app-input [form]="postForm" [formControlName]="'body'" [labelText]="'Post text'"></app-input>
     </fieldset>
 </form>

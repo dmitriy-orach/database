@@ -8,10 +8,18 @@ export class UserMapper {
             lastName: userFormValue.lastName,
             username: userFormValue.nickName,
             email: userFormValue.userEmail,
-            address: userFormValue.address,
+            address: {
+                street: userFormValue.street,
+                building: userFormValue.building,
+                city: userFormValue.city,
+                zipcode: userFormValue.zipcode,
+            },
             phone: userFormValue.userPhone,
             website: userFormValue.website,
-            company: userFormValue.company
+            company: {
+                name: userFormValue.companyName,
+                scope: userFormValue.companyScope
+            }
         };
     }
 }

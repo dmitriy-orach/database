@@ -24,6 +24,7 @@ import { UserMapper } from './mappers/user.mapper';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { PostMapper } from './mappers/post.mapper';
+import { InputComponent } from './components/input/input.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { PostMapper } from './mappers/post.mapper';
     PostFormComponent,
     UserModalWindowComponent,
     UserFormComponent,
-    BaseComponent
+    BaseComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

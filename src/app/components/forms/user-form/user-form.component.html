@@ -1,81 +1,17 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
-        <kendo-formfield>
-            <kendo-label [for]="firstName" text="First name"></kendo-label>
-            <input #firstName class="k-textbox" formControlName="firstName" />
-            <kendo-formhint>First name</kendo-formhint>
-            <kendo-formerror>{{validationMessages('firstName')}}</kendo-formerror>
-        </kendo-formfield>
-        <kendo-formfield>
-            <kendo-label [for]="lastName" text="Last name"></kendo-label>
-            <input #lastName class="k-textbox" formControlName="lastName" />
-            <kendo-formhint>Last name</kendo-formhint>
-            <kendo-formerror>{{validationMessages('lastName')}}</kendo-formerror>
-        </kendo-formfield>
-        <kendo-formfield>
-            <kendo-label [for]="nickName" text="Nickname"></kendo-label>
-            <input #nickName class="k-textbox" formControlName="nickName" />
-            <kendo-formhint>Nickname</kendo-formhint>
-            <kendo-formerror>{{validationMessages('nickName')}}</kendo-formerror>
-        </kendo-formfield>
-        <kendo-formfield>
-            <kendo-label [for]="userEmail" text="Email"></kendo-label>
-            <input #userEmail class="k-textbox" formControlName="userEmail" />
-            <kendo-formhint>Email</kendo-formhint>
-            <kendo-formerror>{{validationMessagesEmail('userEmail')}}</kendo-formerror>
-        </kendo-formfield>
-        <kendo-formfield>
-            <kendo-label [for]="userPhone" text="Phone"></kendo-label>
-            <input #userPhone class="k-textbox" formControlName="userPhone" />
-            <kendo-formhint>Phone</kendo-formhint>
-            <kendo-formerror>{{validationMessagesPhone('userPhone')}}</kendo-formerror>
-        </kendo-formfield>
-        <div formGroupName="address">
-            <kendo-formfield>
-                <kendo-label [for]="city" text="City"></kendo-label>
-                <input #city class="k-textbox" formControlName="city" />
-                <kendo-formhint>City</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-            <kendo-formfield>
-                <kendo-label [for]="street" text="Street"></kendo-label>
-                <input #street class="k-textbox" formControlName="street" />
-                <kendo-formhint>Street</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-            <kendo-formfield>
-                <kendo-label [for]="building" text="Building"></kendo-label>
-                <input #building class="k-textbox" formControlName="building" />
-                <kendo-formhint>Building</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-            <kendo-formfield>
-                <kendo-label [for]="zipcode" text="Zipcode"></kendo-label>
-                <input #zipcode class="k-textbox" formControlName="zipcode" />
-                <kendo-formhint>Zipcode</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-        </div>
-        <kendo-formfield>
-            <kendo-label [for]="website" text="Website"></kendo-label>
-            <input #website class="k-textbox" formControlName="website" />
-            <kendo-formhint>Website</kendo-formhint>
-            <kendo-formerror>{{validationMessages('website')}}</kendo-formerror>
-        </kendo-formfield>
-        <div formGroupName="company">
-            <kendo-formfield>
-                <kendo-label [for]="companyName" text="Company name"></kendo-label>
-                <input #companyName class="k-textbox" formControlName="companyName" />
-                <kendo-formhint>Company name</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-            <kendo-formfield>
-                <kendo-label [for]="companyScope" text="Company scope"></kendo-label>
-                <input #companyScope kendoTextBox class="k-textbox" formControlName="companyScope" />
-                <kendo-formhint>Company scope</kendo-formhint>
-                <kendo-formerror>{{fieldIsRequiredText}}</kendo-formerror>
-            </kendo-formfield>
-        </div>
+        <app-input [form]="userForm" [formControlName]="'firstName'" [labelText]="'First name'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'lastName'" [labelText]="'Last name'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'nickName'" [labelText]="'Nickname'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'userEmail'" [labelText]="'Email'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'userPhone'" [labelText]="'Phone'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'city'" [labelText]="'City'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'street'" [labelText]="'Street'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'building'" [labelText]="'Building'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'zipcode'" [labelText]="'Zipcode'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'website'" [labelText]="'Website'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'companyName'" [labelText]="'Company name'"></app-input>
+        <app-input [form]="userForm" [formControlName]="'companyScope'" [labelText]="'Company scope'"></app-input>
     </fieldset>
 </form>
