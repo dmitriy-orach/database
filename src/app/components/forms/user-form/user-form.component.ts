@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { InputsUserForm } from 'src/app/enums/user-form.enum';
 import { User } from 'src/app/interfaces/user';
 
 @Component({
@@ -9,6 +10,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
+  public inputsUserForm = InputsUserForm;
 
   @Input() public user: User;
 
