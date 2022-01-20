@@ -1,6 +1,6 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
-        <app-input *ngFor="let inputEnumItem of inputsUserFormEnum | keyvalue" [form]="userForm" [formControlName]="input.key" [labelText]="input.value"></app-input>
+        <app-input *ngFor="let inputEnumItem of inputsUserFormEnum | keyvalue" [form]="userForm" [formControlName]="inputEnumItem.key" [labelText]="inputEnumItem.value"></app-input>
     </fieldset>
 </form>
