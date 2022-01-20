@@ -1,17 +1,6 @@
 <form class="k-form" [formGroup]="userForm">
     <fieldset>
         <legend>User Details</legend>
-        <app-input [form]="userForm" [formControlName]="'firstName'" [labelText]="'First name'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'lastName'" [labelText]="'Last name'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'nickName'" [labelText]="'Nickname'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'userEmail'" [labelText]="'Email'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'userPhone'" [labelText]="'Phone'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'city'" [labelText]="'City'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'street'" [labelText]="'Street'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'building'" [labelText]="'Building'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'zipcode'" [labelText]="'Zipcode'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'website'" [labelText]="'Website'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'companyName'" [labelText]="'Company name'"></app-input>
-        <app-input [form]="userForm" [formControlName]="'companyScope'" [labelText]="'Company scope'"></app-input>
+        <app-input *ngFor="let inputEnumItem of inputsUserFormEnum | keyvalue" [form]="userForm" [formControlName]="input.key" [labelText]="input.value"></app-input>
     </fieldset>
 </form>
