@@ -10,7 +10,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
-  public inputsUserForm = InputsUserForm;
+  public inputsUserFormEnum = InputsUserForm;
 
   @Input() public user: User;
 
