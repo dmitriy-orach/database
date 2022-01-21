@@ -1,0 +1,13 @@
+<kendo-dialog
+    [title]="title" 
+    (close)="close()" 
+    [minWidth]="600" 
+>
+    <app-post-form 
+        [post]="post"
+    ></app-post-form>
+    <div class="k-actions k-actions-end">
+        <button type="button" class="k-button" (click)="close()">{{ textCancel }}</button>
+        <button type="button" class="k-button k-primary" (click)="submit()">{{ textSubmit }}</button>
+    </div>
+</kendo-dialog>

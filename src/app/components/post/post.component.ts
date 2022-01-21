@@ -13,6 +13,11 @@ import { CommentsService } from './../../services/comments/comments.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent extends BaseComponent implements OnInit {
+  public textEditPost: string = 'Edit post';
+  public textRemovePost: string = 'Remove';
+  public textShowComments: string = 'Show comments';
+  public textHideComments: string = 'Hide comments';
+  public textTitlePostModal: string = 'Please fill in the new post';
   public comments$: Observable<Comment[]>;
   public toggle: boolean = false;
   public isOpenPostModal: boolean = false;
@@ -40,7 +45,6 @@ export class PostComponent extends BaseComponent implements OnInit {
       catchError(err => of(`Error: ${err}`))
     ).subscribe(
       data => {
-        console.log("DELETE Request is successful ", data);
         this.isUpdate.emit(true);
       }
     );

@@ -1,17 +1,16 @@
 <div class="post">
     <div class="post-info">
         <div class="btn-group">
-            
-            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">Edit post</button>
-            <button kendoButton icon="delete" [primary]="false" (click)="removePost()">Remove</button>
+            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">{{ textEditPost }}</button>
+            <button kendoButton icon="delete" [primary]="false" (click)="removePost()">{{ textRemovePost }}</button>
         </div>
         <h1>{{post.title}}</h1>
         <p>{{post.body}}</p>
     </div>
     <div class="comments" *ngIf="comments$ | async as comments">
         <button kendoButton [primary]="true" (click)="toggleComments()" class="comments-btn">
-            <span *ngIf="!toggle">Show comments</span>
-            <span class="hide-comments-btn" *ngIf="toggle">Hide comments</span>
+            <span *ngIf="!toggle">{{ textShowComments }}</span>
+            <span class="hide-comments-btn" *ngIf="toggle">{{ textHideComments }}</span>
         </button>
         <div *ngIf="toggle">
             <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
@@ -22,7 +21,7 @@
 <app-post-modal-window 
     *ngIf="isOpenPostModal"
     [post]="post"
-    [title]="'Please fill in the new post'" 
+    [title]="textTitlePostModal" 
     [userId]="post.userId"
     (updatePosts)="updatePosts()"
 ></app-post-modal-window>

@@ -1,6 +1,6 @@
 <form  class="k-form" [formGroup]="postForm">
     <fieldset>
-        <legend>Fill in the fields</legend>
+        <legend>{{ legend }}</legend>
         <app-input [form]="postForm" [formControlName]="'title'" [labelText]="'Post title'"></app-input>
         <app-input [form]="postForm" [formControlName]="'body'" [labelText]="'Post text'"></app-input>
     </fieldset>

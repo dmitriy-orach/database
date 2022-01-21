@@ -1,5 +1,5 @@
 <div class="users-list" *ngIf="users$ | async as users">
-    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">Add user</button>
+    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">{{ textAddUser }}</button>
     <kendo-grid 
         [data]="users"
         (dblclick)="dblClick()"
@@ -12,7 +12,7 @@
 
     <app-user-modal-window
         *ngIf="isOpenUserModal"
-        [title]="'Fill in the details of the new user'"
+        [title]="textTitleUserModal"
         [usersLength]="users.length"
         (updateUsers)="updateUsers()"
     ></app-user-modal-window>

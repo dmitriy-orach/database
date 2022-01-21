@@ -7,8 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ModalWindowService {
   public isModalOpened: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() { }
-
   public open(): void {
     this.isModalOpened.next(true);
   }

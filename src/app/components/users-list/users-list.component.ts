@@ -12,6 +12,8 @@ import { UsersService } from '../../services/users/users.service'
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  public textAddUser: string = 'Add user';
+  public textTitleUserModal: string = 'Fill in the details of the new user';
   public users$: Observable<User[]>;
   public isOpenUserModal: boolean;
   public user: User;

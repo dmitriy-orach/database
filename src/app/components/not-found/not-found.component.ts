@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-  constructor() { }
+  public title: string = 'Page not found';
+  public text: string = 'The address is incorrectly typed or such a page on the site no longer exists.';
 }

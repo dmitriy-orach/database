@@ -14,6 +14,26 @@ import { ModalWindowService } from 'src/app/services/modal-window/modal-window.s
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  public title: string = 'User info';
+  public textBack: string = 'Back';
+  public textEditUser: string = 'Edit user';
+  public textFirstName: string = 'User first name';
+  public textLastName: string = 'User last name';
+  public textNickname: string = 'User nickname';
+  public textEmail: string = 'User email';
+  public textAddress: string = 'User address';
+  public textStreet: string = 'Street:';
+  public textBuilding: string = 'Building:';
+  public textCity: string = 'City:';
+  public textZipcode: string = 'Zipcode:';
+  public textPhone: string = 'User phone:';
+  public textWebsite: string = 'User website';
+  public textCompany: string = 'User company';
+  public textCompanyName: string = 'Company name:';
+  public textCompanyScope: string = 'Company scope:';
+  public textAddPost: string = 'Add post';
+  public textTitleUserModal: string = 'Please edited in the user information';
+  public textTitlePostModal: string = 'Please fill in the post';
   public user: User;
   public userPosts$: Observable<Post[]>;
   public isOpenUserModal: boolean = false;

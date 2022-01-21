@@ -19,7 +19,6 @@ export class InputComponent implements ControlValueAccessor  {
   private maxLengthLettersText: string = 'The maximum number of characters allowed is 55!';
   private patternForEmailText: string = 'Incorrect email!';
   private patternForPhoneText: string = 'The phone should only contain numbers! The number must start with + and its total length must be 13 characters!';
-  private value: string;
 
   @Input() public formControlName: string;
   @Input() public labelText: string;
@@ -58,7 +57,6 @@ export class InputComponent implements ControlValueAccessor  {
   }
 
   public writeValue(value: string): void {
-    this.value = value ? value : ''
   }
 
   public registerOnChange(fn: any): void {

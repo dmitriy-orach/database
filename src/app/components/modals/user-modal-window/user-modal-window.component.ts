@@ -4,8 +4,8 @@ import { User } from 'src/app/interfaces/user';
 import { UserMapper } from 'src/app/mappers/user.mapper';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { UsersService } from 'src/app/services/users/users.service';
-import { BaseComponent } from '../base/base.component';
-import { UserFormComponent } from '../forms/user-form/user-form.component';
+import { BaseComponent } from '../../base/base.component';
+import { UserFormComponent } from '../../forms/user-form/user-form.component';
 
 @Component({
   selector: 'app-user-modal-window',
@@ -13,6 +13,9 @@ import { UserFormComponent } from '../forms/user-form/user-form.component';
   styleUrls: ['./user-modal-window.component.scss']
 })
 export class UserModalWindowComponent extends BaseComponent {
+  public textCancel: string = 'Cancel';
+  public textSubmit: string = 'Submit';
+
   @ViewChild(UserFormComponent) public userFormComponent: UserFormComponent;
 
   @Input() public usersLength: number;

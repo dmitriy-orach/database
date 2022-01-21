@@ -4,7 +4,7 @@ import { Post } from 'src/app/interfaces/post';
 import { PostMapper } from 'src/app/mappers/post.mapper';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
 import { PostsService } from 'src/app/services/posts/posts.service';
-import { PostFormComponent } from '../forms/post-form/post-form.component';
+import { PostFormComponent } from '../../forms/post-form/post-form.component';
 
 @Component({
   selector: 'app-post-modal-window',
@@ -12,6 +12,8 @@ import { PostFormComponent } from '../forms/post-form/post-form.component';
   styleUrls: ['./post-modal-window.component.scss']
 })
 export class PostModalWindowComponent implements OnInit {
+  public textCancel: string = 'Cancel';
+  public textSubmit: string = 'Submit'
   public postsLength: number;
 
   @ViewChild(PostFormComponent) public postFormComponent: PostFormComponent;
@@ -38,7 +40,7 @@ export class PostModalWindowComponent implements OnInit {
 
   public submit(): void {
     if(this.postFormComponent.postForm.valid) {
-      const post: Post = this.postMapper.mapPost(this.postFormComponent.postForm.value, this.post, this.userId, this.postsLength);
+      const post: Post = this.postMapper.mapPost(this.postFormComponent.postForm.value, this.userId, this.postsLength);
   
       if(this.post) {
         this.postsService.editPost(this.post.id.toString(), post).pipe(

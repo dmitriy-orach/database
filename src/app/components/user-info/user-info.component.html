@@ -1,48 +1,48 @@
-<div class="container" *ngIf="user; else not_found">
-    <button kendoButton class="k-primary" (click)="goBack()">Back</button>
-    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">Edit user</button>
+<div *ngIf="user; else not_found" class="container">
+    <button kendoButton class="k-primary" (click)="goBack()">{{ textBack }}</button>
+    <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">{{ textEditUser }}</button>
     <div class="user-info">
         <div class="user-info_person">
-            <h1>User info</h1>
+            <h1>{{ title }}</h1>
             <div class="user-info-item">
-                <span>User first name</span>
-                <p>{{user.firstName}}</p>
+                <span>{{ textFirstName }}</span>
+                <p>{{ user.firstName }}</p>
             </div>
             <div class="user-info-item">
-                <span>User last name</span>
-                <p>{{user.lastName}}</p>
+                <span>{{ textLastName }}</span>
+                <p>{{ user.lastName }}</p>
             </div>
             <div class="user-info-item">
-                <span>User nickname</span>
-                <p>{{user.username}}</p>
+                <span>{{ textNickname }}</span>
+                <p>{{ user.username }}</p>
             </div>
             <div class="user-info-item">
-                <span>User email</span>
-                <p>{{user.email}}</p>
+                <span>{{ textEmail }}</span>
+                <p>{{ user.email }}</p>
             </div>
             <div class="user-info-item">
-                <span>User address</span>
-                <p>Street: {{user.address.street}}</p>
-                <p>Building: {{user.address.building}}</p>
-                <p>City: {{user.address.city}}</p>
-                <p>Zipcode: {{user.address.zipcode}}</p>
+                <span>{{ textAddress }}</span>
+                <p>{{ textStreet }} {{ user.address.street }}</p>
+                <p>{{ textBuilding }} {{ user.address.building }}</p>
+                <p>{{ textCity }} {{ user.address.city }}</p>
+                <p>{{ textZipcode }} {{ user.address.zipcode }}</p>
             </div>
             <div class="user-info-item">
-                <span>User phone:</span>
-                <p>{{user.phone}}</p>
+                <span>{{ textPhone }}</span>
+                <p>{{ user.phone }}</p>
             </div>
             <div class="user-info-item">
-                <span>User website</span>
-                <p>{{user.website}}</p>
+                <span>{{ textWebsite }}</span>
+                <p>{{ user.website }}</p>
             </div>
             <div class="user-info-item">
-                <span>User company</span>
-                <p>Company name: {{user.company.name}}</p>
-                <p>Company scope: {{user.company.scope}}</p>
+                <span>{{ textCompany }}</span>
+                <p>{{ textCompanyName }} {{ user.company.name }}</p>
+                <p>{{ textCompanyScope }} {{ user.company.scope }}</p>
             </div>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
-            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">Add post</button>
+            <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">{{ textAddPost }}</button>
             <app-post *ngFor="let post of posts" [post]="post" (isUpdate)="updatePosts()"></app-post>
         </div>
     </div>
@@ -55,14 +55,14 @@
 
 <app-user-modal-window
     *ngIf="isOpenUserModal"
-    [title]="'Please edited in the user information'"
+    [title]="textTitleUserModal"
     [user]="user"
     (updateUser)="updateUser()"
 ></app-user-modal-window>
 
 <app-post-modal-window
     *ngIf="isOpenPostModal"
-    [title]="'Please fill in the new post'" 
+    [title]="textTitlePostModal" 
     [userId]="user.id"
     (updatePosts)="updatePosts()"
 ></app-post-modal-window>

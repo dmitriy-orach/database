@@ -9,6 +9,7 @@ import { User } from 'src/app/interfaces/user';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  public legend: string = 'User Details';
   public userForm: FormGroup;
   public inputsUserFormEnum = InputsUserForm;
 
