@@ -15,12 +15,14 @@ import { UserFormComponent } from '../../forms/user-form/user-form.component';
 export class UserModalWindowComponent extends BaseComponent {
   public textCancel: string = 'Cancel';
   public textSubmit: string = 'Submit';
+  public textApply: string = 'Apply';
 
   @ViewChild(UserFormComponent) public userFormComponent: UserFormComponent;
 
   @Input() public usersLength: number;
   @Input() public title: string;
   @Input() public user: User;
+  @Input() public isUserSaved: boolean;
 
   @Output() public updateUsers = new EventEmitter;
   @Output() public updateUser = new EventEmitter;
@@ -39,7 +41,7 @@ export class UserModalWindowComponent extends BaseComponent {
 
   public submit(): void {
     if(this.userFormComponent.userForm.valid) {
-      const user: User = this.userMapper.mapUser(this.userFormComponent.userForm.value, this.user, this.usersLength);
+      const user: User = this.userMapper.mapUser(this.userFormComponent.userForm.value, this.user, this.usersLength, this.isUserSaved);
       if(this.user) {
         this.usersService.editUser(this.user.id.toString(), user).pipe(
           takeUntil(this.destroyed),
@@ -62,8 +64,19 @@ export class UserModalWindowComponent extends BaseComponent {
     }
   }
 
+  apply() {
+    if(this.userFormComponent.userForm.valid) {
+      const user: User = this.userMapper.mapUser(this.userFormComponent.userForm.value, this.user, this.usersLength, this.isUserSaved);
+      if(this.user) {
+        this.user = user;
+        this.updateUser.emit(this.user);
+        this.close();
+      }
+    }
+  }
+
   private closeModalMechanism(): void {
-    this.user? this.updateUser.emit() : this.updateUsers.emit();
+    this.user ? this.updateUser.emit() : this.updateUsers.emit();
     this.userFormComponent.userForm.reset();
     this.close();
   }

@@ -25,6 +25,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { PostMapper } from './mappers/post.mapper';
 import { InputComponent } from './components/input/input.component';
+import { TextStyleBoldDirective } from './directives/text-style-bold.directive';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { InputComponent } from './components/input/input.component';
     UserModalWindowComponent,
     UserFormComponent,
     BaseComponent,
-    InputComponent
+    InputComponent,
+    TextStyleBoldDirective
   ],
   imports: [
     BrowserModule,

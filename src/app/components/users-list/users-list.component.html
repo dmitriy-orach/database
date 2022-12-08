@@ -4,7 +4,7 @@
         [data]="users"
         (dblclick)="dblClick()"
         (cellClick)="cellClickHandler($event)">
-        <kendo-grid-column field="username" title="User name"> </kendo-grid-column>
+        <kendo-grid-column field="firstName" title="User name"></kendo-grid-column>
         <kendo-grid-column field="email" title="Post email"> </kendo-grid-column>
         <kendo-grid-column field="address.city" title="User address"> </kendo-grid-column>
         <kendo-grid-column field="phone" title="User Phone"> </kendo-grid-column>
@@ -15,5 +15,6 @@
         [title]="textTitleUserModal"
         [usersLength]="users.length"
         (updateUsers)="updateUsers()"
+        [isUserSaved]="true"
     ></app-user-modal-window>
 </div>

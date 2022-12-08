@@ -7,7 +7,8 @@ export interface User {
     address: UserAddress,
     phone: string,
     website: string,
-    company: UserCompany
+    company: UserCompany,
+    saved: boolean
 
 }
 

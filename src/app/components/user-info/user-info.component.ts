@@ -3,17 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from '../../services/users/users.service'
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, takeUntil } from 'rxjs';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { ModalWindowService } from 'src/app/services/modal-window/modal-window.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent extends BaseComponent implements OnInit   {
   public title: string = 'User info';
   public textBack: string = 'Back';
   public textEditUser: string = 'Edit user';
@@ -31,6 +32,9 @@ export class UserInfoComponent implements OnInit {
   public textCompany: string = 'User company';
   public textCompanyName: string = 'Company name:';
   public textCompanyScope: string = 'Company scope:';
+  public textIsUserSave: string = 'User status:';
+  public textSave: string = 'Save';
+  public textApply: string = 'Not saved';
   public textAddPost: string = 'Add post';
   public textTitleUserModal: string = 'Please edited in the user information';
   public textTitlePostModal: string = 'Please fill in the post';
@@ -46,7 +50,9 @@ export class UserInfoComponent implements OnInit {
     private usersService: UsersService,
     private postsService: PostsService,
     private modalWindowService: ModalWindowService
-  ) { }
+  ) { 
+    super();
+  }
 
   public ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id');
@@ -60,9 +66,13 @@ export class UserInfoComponent implements OnInit {
     this.location.back();
   }
 
-  public updateUser(): void {
+  public updateUser(user?: User): void {
     this.closeUserModal();
-    this.usersService.getUser(this.userId).subscribe(user => this.user = user);
+    if(user) {
+      this.user = user
+    } else {
+      this.usersService.getUser(this.userId).subscribe(user => this.user = user);
+    }
   }
 
   public updatePosts(): void {
@@ -96,5 +106,17 @@ export class UserInfoComponent implements OnInit {
     this.modalWindowService.getModalWindowStatus().subscribe(isModalOpened => {
       this.isOpenUserModal = isModalOpened;
     })
+  }
+
+  public saveUserInfo(): void {
+    this.user.saved = true
+    this.usersService.editUser(this.user.id.toString(), this.user).pipe(
+      takeUntil(this.destroyed),
+      catchError(err => of(`Error: ${err}`))
+    ).subscribe(
+      () => {
+        this.updateUser();
+      }
+    )
   }
 }

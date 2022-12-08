@@ -1,7 +1,7 @@
 import { User } from './../interfaces/user';
 
 export class UserMapper {
-    public mapUser(userFormValue: any, currentUser: User, usersLength: number): User {
+    public mapUser(userFormValue: any, currentUser: User, usersLength: number, isUserSaved: boolean): User {
         return {
             id: currentUser ? currentUser.id : usersLength + 1,
             firstName: userFormValue.firstName,
@@ -19,7 +19,8 @@ export class UserMapper {
             company: {
                 name: userFormValue.companyName,
                 scope: userFormValue.companyScope
-            }
+            },
+            saved: isUserSaved
         };
     }
 }

@@ -1,6 +1,7 @@
 <div *ngIf="user; else not_found" class="container">
     <button kendoButton class="k-primary" (click)="goBack()">{{ textBack }}</button>
     <button kendoButton class="k-primary open-user-modal-btn" (click)="openUserModal()">{{ textEditUser }}</button>
+    <button kendoButton class="k-primary open-user-modal-btn" (click)="saveUserInfo()">{{ textSave }}</button>
     <div class="user-info">
         <div class="user-info_person">
             <h1>{{ title }}</h1>
@@ -40,6 +41,10 @@
                 <p>{{ textCompanyName }} {{ user.company.name }}</p>
                 <p>{{ textCompanyScope }} {{ user.company.scope }}</p>
             </div>
+            <div class="user-info-item">
+                <span>{{ textIsUserSave }}</span>
+                <p>{{ user.saved ? textSave : textApply }}</p>
+            </div>
         </div>
         <div class="user-info_posts" *ngIf="userPosts$ | async as posts">
             <button kendoButton class="k-primary open-post-modal-btn" (click)="openPostModal()">{{ textAddPost }}</button>
@@ -57,7 +62,8 @@
     *ngIf="isOpenUserModal"
     [title]="textTitleUserModal"
     [user]="user"
-    (updateUser)="updateUser()"
+    (updateUser)="updateUser($event)"
+    [isUserSaved]="false"
 ></app-user-modal-window>
 
 <app-post-modal-window

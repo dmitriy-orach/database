@@ -10,8 +10,14 @@
         <button type="button" class="k-button" (click)="close()">
             {{ textCancel }}
         </button>
-        <button type="button" class="k-button k-primary" (click)="submit()">
+        <button *ngIf="isUserSaved; else applyBtn" type="button" class="k-button k-primary" (click)="submit()">
             {{ textSubmit }}
         </button>
     </div>
+
+    <ng-template #applyBtn>
+        <button type="button" class="k-button k-primary" (click)="apply()">
+            {{ textApply }}
+        </button>
+    </ng-template>
 </kendo-dialog>
